@@ -37,7 +37,8 @@ class Alumno extends Model
     public $table = "alumno";
 
     protected $primaryKey = "DNI";
-
+    
+    protected $keyType = 'string';
     
     static $rules = [
 		'DNI' => 'required',

@@ -55,7 +55,7 @@ class AlumnoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $DNI
+     * @param string $DNI
      * @return \Illuminate\Http\Response
      */
     public function show($DNI)
@@ -68,7 +68,7 @@ class AlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $DNI
+     * @param  varchar $DNI
      * @return \Illuminate\Http\Response
      */
     public function edit($DNI)
@@ -96,7 +96,7 @@ class AlumnoController extends Controller
     }
 
     /**
-     * @param VARCHAR $DNI
+     * @param varchar $DNI
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
