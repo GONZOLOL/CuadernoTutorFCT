@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property CuestionarioEmpresa[] $cuestionarioEmpresas
+ * @property CuestionarioEmpresa[] $cuestionarioempresa
  * @property Empresa $empresa
  * @property EvaluaciónQuincenal[] $evaluaciónQuincenals
  * @property Tiene[] $tienes
@@ -36,6 +36,7 @@ class CuadernoTutor extends Model
 
     
     static $rules = [
+        'Id_cuaderno' => 'required',
 		'trimestre' => 'required',
 		'ciclo_formativo_curso_actual' => 'required',
 		'CIF_EMPRESA' => 'required',
@@ -55,7 +56,7 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function cuestionarioEmpresas()
+    public function cuestionarioempresa()
     {
         return $this->hasMany('App\Models\CuestionarioEmpresa', 'Id_cuaderno', 'Id_cuaderno');
     }
@@ -66,6 +67,12 @@ class CuadernoTutor extends Model
     public function empresa()
     {
         return $this->hasOne('App\Models\Empresa', 'CIF', 'CIF_EMPRESA');
+    }
+
+
+    public function get_empresa_name()
+    {
+        return ($this->empresa->Nombre);
     }
     
     /**
@@ -91,12 +98,21 @@ class CuadernoTutor extends Model
     {
         return $this->hasOne('App\Models\TutorDocente', 'DNI', 'DNI_tutor_docente');
     }
+
+    public function get_tutorDocente_name_surname()
+    {
+        $name = $this->tutorDocente->Nombre ?? '';
+        $surname = $this->tutorDocente->Apellido_1 ?? '';
+    
+        return $name . ' ' . $surname;
+    }
+    
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function valoracionAlumnos()
-    {
+    {   
         return $this->hasMany('App\Models\ValoracionAlumno', 'Id_cuaderno', 'Id_cuaderno');
     }
     

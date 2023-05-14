@@ -55,7 +55,7 @@ class AlumnoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $DNI
+     * @param varchar $DNI
      * @return \Illuminate\Http\Response
      */
     public function show($DNI)

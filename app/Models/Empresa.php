@@ -35,6 +35,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Empresa extends Model
 {
+    protected $table = 'empresa';
+
+    protected $primaryKey = "CIF";
+
+    protected $keyType = 'string';
+
     
     static $rules = [
 		'CIF' => 'required',
@@ -76,7 +82,7 @@ class Empresa extends Model
     {
         return $this->hasMany('App\Models\CuadernoTutor', 'CIF_EMPRESA', 'CIF');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

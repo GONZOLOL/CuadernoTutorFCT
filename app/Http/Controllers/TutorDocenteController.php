@@ -47,7 +47,7 @@ class TutorDocenteController extends Controller
 
         $tutorDocente = TutorDocente::create($request->all());
 
-        return redirect()->route('tutor-docentes.index')
+        return redirect()->route('tutor-docente.index')
             ->with('success', 'TutorDocente created successfully.');
     }
 
@@ -90,7 +90,7 @@ class TutorDocenteController extends Controller
 
         $tutorDocente->update($request->all());
 
-        return redirect()->route('tutor-docentes.index')
+        return redirect()->route('tutor-docente.index')
             ->with('success', 'TutorDocente updated successfully');
     }
 
@@ -103,7 +103,7 @@ class TutorDocenteController extends Controller
     {
         $tutorDocente = TutorDocente::find($id)->delete();
 
-        return redirect()->route('tutor-docentes.index')
+        return redirect()->route('tutor-docente.index')
             ->with('success', 'TutorDocente deleted successfully');
     }
 }

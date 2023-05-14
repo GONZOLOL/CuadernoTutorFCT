@@ -20,6 +20,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TutorDocente extends Model
 {
+
+  protected $table = 'tutor_docente';
+
+  protected $primaryKey = "DNI";
+
+  protected $keyType = 'string';
     
     static $rules = [
 		'DNI' => 'required',

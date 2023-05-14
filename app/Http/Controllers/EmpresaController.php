@@ -18,10 +18,10 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = Empresa::paginate();
+        $empresa = Empresa::paginate();
 
-        return view('empresa.index', compact('empresas'))
-            ->with('i', (request()->input('page', 1) - 1) * $empresas->perPage());
+        return view('empresa.index', compact('empresa'))
+            ->with('i', (request()->input('page', 1) - 1) * $empresa->perPage());
     }
 
     /**
@@ -47,19 +47,19 @@ class EmpresaController extends Controller
 
         $empresa = Empresa::create($request->all());
 
-        return redirect()->route('empresas.index')
+        return redirect()->route('empresa.index')
             ->with('success', 'Empresa created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  int $CIF
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($CIF)
     {
-        $empresa = Empresa::find($id);
+        $empresa = Empresa::find($CIF);
 
         return view('empresa.show', compact('empresa'));
     }
@@ -67,12 +67,12 @@ class EmpresaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param  int $CIF
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($CIF)
     {
-        $empresa = Empresa::find($id);
+        $empresa = Empresa::find($CIF);
 
         return view('empresa.edit', compact('empresa'));
     }
@@ -90,20 +90,20 @@ class EmpresaController extends Controller
 
         $empresa->update($request->all());
 
-        return redirect()->route('empresas.index')
+        return redirect()->route('empresa.index')
             ->with('success', 'Empresa updated successfully');
     }
 
     /**
-     * @param int $id
+     * @param int $CIF
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($CIF)
     {
-        $empresa = Empresa::find($id)->delete();
+        $empresa = Empresa::find($CIF)->delete();
 
-        return redirect()->route('empresas.index')
+        return redirect()->route('empresa.index')
             ->with('success', 'Empresa deleted successfully');
     }
 }
