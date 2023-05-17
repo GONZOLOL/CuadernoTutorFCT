@@ -47,7 +47,7 @@ class TutorDocenteController extends Controller
 
         $tutorDocente = TutorDocente::create($request->all());
 
-        return redirect()->route('tutor-docente.index')
+        return redirect()->route('alumno.index')
             ->with('success', 'TutorDocente created successfully.');
     }
 
