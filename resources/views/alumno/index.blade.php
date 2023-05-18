@@ -1,134 +1,220 @@
 @extends('layouts.app')
 
+@section('head')
+<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+@endsection
+
 @section('template_title')
 Alumno
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container position-relative">
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
     </div>
     @endif
-    <div class="float-end mb-3">
-        <a href="{{ route('alumno.create') }}" class="btn btn-primary float-end" data-placement="left"
-            style=width:200px>
-            {{ __('Crear alumno') }}
+
+    <div class="mb-5 position-absolute" style=" display:flex; gap:10px; position:absolute; top:-80px; left:910px;">
+        <a href="{{ route('alumno.create') }}" class="btn btn-primary mb-5" data-placement="left"
+            style="width:200px; margin: 0px 200px 2rem 0px">
+            {{ __('Añadir alumno') }}
         </a>
     </div>
-
-    <div class="accordion mt-5" id="accordionExample" style=max-width:1100px>
+    <div class="accordion" id="accordionExample" style="max-width:1100px; margin-top: 90px;">
         @foreach ($alumno as $alumno)
 
-        <div class="accordion-item border rounded border-0 mb-4">
+        <div class="accordion-item border rounded border-0 mb-4 position-relative">
             <h2 class="accordion-header">
                 <button class="accordion-button border" type="button" data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapse{{ $alumno->DNI }}" aria-expanded="true"
                     aria-controls="panelsStayOpen-collapse{{ $alumno->DNI }}">
                     {{ $alumno->Nombre }}
                     {{ $alumno->Apellidos }}
-                    {{ $alumno->DNI }}
-
-                    <div style="display:flex; gap:10px; position:absolute; top:12px; left:1150px;">
-                        <a class="btn btn-sm btn-success" href="{{ route('alumno.edit',$alumno->DNI) }}">
-                            <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="{{ route('alumno.destroy',$alumno->DNI) }}">
-                            @csrf
-                            @method('DELETE')
-                            <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
-                        </a>
-                    </div>
-
+                    <strong class="ms-3">{{ $alumno->DNI }}</strong>
                 </button>
             </h2>
+
             <div id="panelsStayOpen-collapse{{ $alumno->DNI }}" class="accordion-collapse collapse">
                 <div class="accordion-body border">
-                    <div style="display:flex; gap:10px; flex-direction:column; width: 100%; height: 100%;">
-                        <div class="d-flex flex-row gap-5 justify-content-between">
-                            <div class="d-flex flex-column">
-                                <span>Apellidos</span>
-                                <span>{{ $alumno->Apellidos }}</span>
+                    <div class="detail-panel">
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Apellidos</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Apellidos }}
+                                    </span>
+                                </span>
                             </div>
-                            <div class="d-flex flex-column">
-                                <span>Nombre</span>
-                                <td>{{ $alumno->Nombre }}</td>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Nombre</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Nombre }}
+                                    </span>
+                                </span>
                             </div>
-                            <div class="d-flex flex-column">
-                                <span>Dni</span>
-                                <td>{{ $alumno->DNI }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Domicilio</span>
-                                <td>{{ $alumno->Domicilio }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Población</span>
-                                <td>{{ $alumno->Población }}</td>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row gap-5 justify-content-between">
-                            <div class="d-flex flex-column">
-                                <span>Codigo postal</span>
-                                <td>{{ $alumno->Codigo_postal }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Provincia</span>
-                                <td>{{ $alumno->Provincia }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Fecha nacimiento</span>
-                                <td>{{ $alumno->Fecha_nacimiento }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Edad</span>
-                                <td>{{ $alumno->Edad }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Teléfono</span>
-                                <td>{{ $alumno->Teléfono }}</td>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Dni</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->DNI }}
+                                    </span>
+                                </span>
                             </div>
                         </div>
-                        <div class="d-flex flex-row gap-5 justify-content-between">
-                            <div class="d-flex flex-column">
-                                <span>Email</span>
-                                <td>{{ $alumno->Email }}</td>
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Domicilio</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Domicilio }}
+                                    </span>
+                                </span>
                             </div>
-                            <div class="d-flex flex-column">
-                                <span>Género</span>
-                                <td>{{ $alumno->Género }}</td>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Población</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Población }}
+                                    </span>
+                                </span>
                             </div>
-                            <div class="d-flex flex-column">
-                                <span>Nombre padre</span>
-                                <td>{{ $alumno->Nombre_padre }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Observaciones</span>
-                                <td>{{ $alumno->Observaciones }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Tipo empresa fct</span>
-                                <td>{{ $alumno->Tipo_empresa_FCT }}</td>
-                            </div>
-                        </div>
-                        <div class="d-flex flex-row gap-5 justify-content-between">
-                            <div class="d-flex flex-column">
-                                <span>Solicita beca</span>
-                                <td>{{ $alumno->Solicita_beca }}</td>
-                            </div>
-                            <div class="d-flex flex-column">
-                                <span>Cuenta bancaria</span>
-                                <td>{{ $alumno->Cuenta_bancaria }}</td>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Codigo postal</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Codigo_postal }}
+                                    </span>
+                                </span>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Provincia</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Provincia }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Fecha nacimiento</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Fecha_nacimiento }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Edad</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Edad }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Teléfono</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Teléfono }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Email</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Email }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Género</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Género }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Nombre padre</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Nombre_padre }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Observaciones</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Observaciones }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Tipo empresa fct</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Tipo_empresa_FCT }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Solicita beca</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Solicita_beca }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-4 my-2">
+                                <span class="detail-label mx-3">Cuenta bancaria</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $alumno->Cuenta_bancaria }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <form action="{{ route('alumno.destroy',$alumno->DNI) }}" method="POST"
+                style="display:flex; gap:10px; position:absolute; top:8px; left:1122px;">
+                <div class="btn btn-md btn-success d-flex align-items-center gap-1"
+                    href="{{ route('alumno.edit',$alumno->DNI) }}">
+                    <i class="fa fa-fw fa-edit"></i>
+                    {{ __('Edit') }}
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-md "><i class="fa fa-fw fa-trash"></i>
+                    {{ __('Delete') }}
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </form>
             @endforeach
         </div>
+    </div>
+
+    <div class="float-end">
+        <a href="{{ route('empresa.index') }}" class="btn btn-primary float-end" data-placement="left"
+            style="width:200px; margin:80px 0px 40px 200px;">
+            {{ __('Siguiente') }}
+        </a>
     </div>
 </div>
 @endsection
