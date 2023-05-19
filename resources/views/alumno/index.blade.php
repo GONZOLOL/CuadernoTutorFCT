@@ -9,7 +9,7 @@ Alumno
 @endsection
 
 @section('content')
-<div class="container position-relative">
+<div class="container d-flex flex-column">
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -17,13 +17,13 @@ Alumno
     </div>
     @endif
 
-    <div class="mb-5 position-absolute" style=" display:flex; gap:10px; position:absolute; top:-80px; left:910px;">
-        <a href="{{ route('alumno.create') }}" class="btn btn-primary mb-5" data-placement="left"
-            style="width:200px; margin: 0px 200px 2rem 0px">
+    <div class="mb-1 d-flex justify-content-end">
+        <a href="{{ route('alumno.create') }}" class="btn btn-success d-flex" data-placement="left" style=width:180px>
             {{ __('Añadir alumno') }}
+            <i class="bi bi-plus"></i>
         </a>
     </div>
-    <div class="accordion" id="accordionExample" style="max-width:1100px; margin-top: 90px;">
+    <div class="accordion" id="accordionExample" style="max-width:1100px; margin-top: 40px;">
         @foreach ($alumno as $alumno)
 
         <div class="accordion-item border rounded border-0 mb-4 position-relative">
@@ -193,7 +193,7 @@ Alumno
             </div>
             <form action="{{ route('alumno.destroy',$alumno->DNI) }}" method="POST"
                 style="display:flex; gap:10px; position:absolute; top:8px; left:1122px;">
-                <div class="btn btn-md btn-success d-flex align-items-center gap-1"
+                <div class="btn btn-md btn-warning d-flex align-items-center gap-1"
                     href="{{ route('alumno.edit',$alumno->DNI) }}">
                     <i class="fa fa-fw fa-edit"></i>
                     {{ __('Edit') }}
@@ -201,20 +201,20 @@ Alumno
                 </div>
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-md "><i class="fa fa-fw fa-trash"></i>
+                <div type="submit" class="btn btn-danger btn-md d-flex align-items-center gap-1">
+                    <i class="fa fa-fw fa-trash"></i>
                     {{ __('Delete') }}
                     <i class="bi bi-trash-fill"></i>
-                </button>
+                </div>
             </form>
             @endforeach
         </div>
     </div>
 
-    <div class="float-end">
-        <a href="{{ route('empresa.index') }}" class="btn btn-primary float-end" data-placement="left"
-            style="width:200px; margin:80px 0px 40px 200px;">
-            {{ __('Siguiente') }}
-        </a>
-    </div>
+</div>
+<div class="my-5 d-flex justify-content-end">
+    <a href="{{ route('empresa.index') }}" class="btn btn-primary float-end" data-placement="left" style=width:180px>
+        {{ __('Siguiente') }}
+    </a>
 </div>
 @endsection
