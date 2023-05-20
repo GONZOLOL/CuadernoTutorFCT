@@ -23,7 +23,7 @@
         </div>
 
     </div>
-    <div class="d-flex justify-content-end mt-5">
-        <button type="submit" class="btn btn-primary btn-lg">{{ __('Siguiente') }}</button>
+    <div class="box-footer mt-4 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" style=width:200px>{{ __('Siguiente') }}</button>
     </div>
 </div>

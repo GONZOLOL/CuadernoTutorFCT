@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<section class="content container">
+<section class="content container-sm">
     <div class="row">
         <div class="col-md-12">
 
@@ -13,7 +13,7 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">{{ __('Create') }} Tutor Docente</span>
+                    <span class="card-title">Añadir datos tutor docente</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tutor-docente.store') }}" role="form"
