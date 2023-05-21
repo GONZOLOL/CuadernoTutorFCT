@@ -67,6 +67,15 @@ class Alumno extends Model
     protected $fillable = ['DNI','Apellidos','Nombre','Domicilio','Población','Codigo_postal','Provincia','Fecha_nacimiento','Edad','Teléfono','Email','Género','Nombre_padre','Observaciones','Tipo_empresa_FCT','Solicita_beca','Cuenta_bancaria'];
 
 
+    public function cuadernosTutores()
+    {
+        return $this->belongsToMany(
+            'App\Models\CuadernoTutor',
+            'tiene',
+            'DNI_alumno',
+            'Id_cuaderno');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -74,7 +83,10 @@ class Alumno extends Model
     {
         return $this->hasOne('App\Models\Supervisa', 'DNI_alumno', 'DNI');
     }
-    
+        public function cuadernos()
+    {
+        return $this->hasMany(CuadernoTutor::class);
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

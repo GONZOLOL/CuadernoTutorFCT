@@ -5,6 +5,7 @@ Cuaderno Tutor
 @endsection
 
 @section('content')
+
 <div class="container">
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -12,8 +13,7 @@ Cuaderno Tutor
     </div>
     @endif
     <div class="float-end mb-3">
-        <a href="{{ route('tutor-docente.create') }}" class="btn btn-primary float-end" data-placement="left"
-            style=width:200px>
+        <a href="{{ route('alumno.index') }}" class="btn btn-primary float-end" data-placement="left" style=width:200px>
             {{ __('Crear cuaderno tutor') }}
         </a>
     </div>

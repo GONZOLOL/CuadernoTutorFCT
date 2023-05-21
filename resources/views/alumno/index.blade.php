@@ -216,7 +216,7 @@ Alumno
         </div>
     </div>
     <div class="my-5 d-flex justify-content-end">
-        <a href="{{ route('empresa.index') }}" class="btn btn-primary" data-placement="left" style=width:180px>
+        <a href="{{ route('cuaderno-tutor.create') }}" class="btn btn-primary" data-placement="left" style=width:180px>
             {{ __('Siguiente') }}
         </a>
     </div>

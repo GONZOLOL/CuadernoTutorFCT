@@ -7,6 +7,11 @@
                 {!! $errors->first('DNI_tutor_docente', '<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="form-group">
+                {{ Form::label('CIF_EMPRESA') }}
+                {{ Form::text('CIF_EMPRESA', $cuadernoTutor->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Cif Empresa']) }}
+                {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
+            <div class="form-group">
                 {{ Form::label('trimestre') }}
                 {{ Form::text('trimestre', $cuadernoTutor->trimestre, ['class' => 'form-control' . ($errors->has('trimestre') ? ' is-invalid' : ''), 'placeholder' => 'Trimestre']) }}
                 {!! $errors->first('trimestre', '<div class="invalid-feedback">:message</div>') !!}
@@ -21,15 +26,6 @@
                 {{ Form::text('plan_formativo', $cuadernoTutor->plan_formativo, ['class' => 'form-control' . ($errors->has('plan_formativo') ? ' is-invalid' : ''), 'placeholder' => 'Plan Formativo']) }}
                 {!! $errors->first('plan_formativo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-            <div class="form-group">
-                {{ Form::label('CIF_EMPRESA') }}
-                {{ Form::text('CIF_EMPRESA', $cuadernoTutor->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Cif Empresa']) }}
-                {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
-            </div>
-
-        </div>
-        <div class="box-footer mx-4">
-            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
         </div>
     </div>
 </div>

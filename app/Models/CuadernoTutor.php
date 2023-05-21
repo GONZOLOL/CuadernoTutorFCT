@@ -36,7 +36,6 @@ class CuadernoTutor extends Model
 
     
     static $rules = [
-        'Id_cuaderno' => 'required',
 		'trimestre' => 'required',
 		'ciclo_formativo_curso_actual' => 'required',
 		'CIF_EMPRESA' => 'required',
@@ -86,7 +85,7 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tienes()
+    public function tiene()
     {
         return $this->hasMany('App\Models\Tiene', 'Id_cuaderno', 'Id_cuaderno');
     }
@@ -94,17 +93,33 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function tutorDocente()
-    {
-        return $this->hasOne('App\Models\TutorDocente', 'DNI', 'DNI_tutor_docente');
-    }
-
+    
     public function get_tutorDocente_name_surname()
     {
         $name = $this->tutorDocente->Nombre ?? '';
         $surname = $this->tutorDocente->Apellido_1 ?? '';
-    
+        
         return $name . ' ' . $surname;
+    }
+
+    public function tutorDocente()
+    {
+        return $this->belongsTo('App\Models\TutorDocente', 'DNI_tutor_docente', 'DNI');
+    }
+
+    public function empresas()
+    {
+        return $this->belongsToMany('App\Models\Empresa', 'CIF_EMPRESA', 'CIF');
+    }
+
+    public function alumnos()
+    {
+        return $this->belongsToMany(
+            'App\Models\Alumno',
+            'tiene',
+            'Id_cuaderno',
+            'DNI_alumno',
+        );
     }
     
     

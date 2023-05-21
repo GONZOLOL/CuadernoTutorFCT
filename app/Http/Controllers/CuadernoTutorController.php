@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\CuadernoTutor;
 use Illuminate\Http\Request;
+use App\Models\Empresa;
+use App\Models\TutorDocente;
+use App\Models\Alumno;
+
+
 
 /**
  * Class CuadernoTutorController
@@ -32,7 +37,8 @@ class CuadernoTutorController extends Controller
     public function create()
     {
         $cuadernoTutor = new CuadernoTutor();
-        return view('cuaderno-tutor.create', compact('cuadernoTutor'));
+        $alumnos = Alumno::all(); // Recupera todos los alumnos
+        return view('cuaderno-tutor.create', compact('cuadernoTutor', 'alumnos'));
     }
 
     /**
@@ -43,13 +49,41 @@ class CuadernoTutorController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(CuadernoTutor::$rules);
 
+        $empresa = Empresa::firstOrNew(
+            ['CIF' => $request->input('CIF_EMPRESA')], 
+            ['CIF' => $request->input('CIF_EMPRESA')]
+        );
+        
+        // Now check if it's a new instance or existing instance.
+        if (!$empresa->exists) {
+            // It's a new instance. Redirect to the creation form.
+            return redirect()->route('empresa.create')->withInput();
+        }
+        
+        // Same for TutorDocente
+        $tutorDocente = TutorDocente::firstOrNew(
+            ['DNI' => $request->input('DNI_tutor_docente')], 
+            ['DNI' => $request->input('DNI_tutor_docente')]
+        );
+        
+        if (!$tutorDocente->exists) {
+            // It's a new instance. Redirect to the creation form.
+            return redirect()->route('tutor-docente.create')->withInput();
+        }
+
+        // If both exist, proceed to create the CuadernoTutor.
+        request()->validate(CuadernoTutor::$rules);
         $cuadernoTutor = CuadernoTutor::create($request->all());
+
+        $cuadernoTutor->alumnos()->sync($request->alumnos);
+
+        $request->session()->forget('alumnoIDs');
 
         return redirect()->route('cuaderno-tutor.index')
             ->with('success', 'CuadernoTutor created successfully.');
     }
+    
 
     /**
      * Display the specified resource.

@@ -17,6 +17,12 @@ Empresa
     </div>
     @endif
 
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="mb-1 d-flex justify-content-between">
         <div>
             <h2 class="text-center">Empresas</h1>
