@@ -17,8 +17,13 @@ Alumno
     </div>
     @endif
 
-    <div class="mb-1 d-flex justify-content-end">
-        <a href="{{ route('alumno.create') }}" class="btn btn-success d-flex" data-placement="left" style=width:180px>
+
+    <div class="mb-1 d-flex justify-content-between">
+        <div>
+            <h2 class="text-center">Alumnos</h1>
+        </div>
+        <a href="{{ route('alumno.create') }}" class="btn btn-success d-flex justify-content-center align-items-center"
+            data-placement="center" style=width:180px>
             {{ __('Añadir alumno') }}
             <i class="bi bi-plus"></i>
         </a>
@@ -193,28 +198,27 @@ Alumno
             </div>
             <form action="{{ route('alumno.destroy',$alumno->DNI) }}" method="POST"
                 style="display:flex; gap:10px; position:absolute; top:8px; left:1122px;">
-                <div class="btn btn-md btn-warning d-flex align-items-center gap-1"
+                <a class="btn btn-md btn-warning d-flex align-items-center gap-1"
                     href="{{ route('alumno.edit',$alumno->DNI) }}">
                     <i class="fa fa-fw fa-edit"></i>
                     {{ __('Edit') }}
                     <i class="bi bi-pencil-square"></i>
-                </div>
+                </a>
                 @csrf
                 @method('DELETE')
-                <div type="submit" class="btn btn-danger btn-md d-flex align-items-center gap-1">
+                <button type="submit" class="btn btn-danger btn-md d-flex align-items-center gap-1">
                     <i class="fa fa-fw fa-trash"></i>
                     {{ __('Delete') }}
                     <i class="bi bi-trash-fill"></i>
-                </div>
+                </button>
             </form>
             @endforeach
         </div>
     </div>
-
-</div>
-<div class="my-5 d-flex justify-content-end">
-    <a href="{{ route('empresa.index') }}" class="btn btn-primary float-end" data-placement="left" style=width:180px>
-        {{ __('Siguiente') }}
-    </a>
+    <div class="my-5 d-flex justify-content-end">
+        <a href="{{ route('cuaderno-tutor.create') }}" class="btn btn-primary" data-placement="left" style=width:180px>
+            {{ __('Siguiente') }}
+        </a>
+    </div>
 </div>
 @endsection

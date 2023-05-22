@@ -51,6 +51,11 @@ class TutorDocente extends Model
     {
         return $this->hasMany('App\Models\CuadernoTutor', 'DNI_tutor_docente', 'DNI');
     }
+
+    public function cuadernos()
+    {
+        return $this->hasMany(CuadernoTutor::class);
+    }
     
 
 }

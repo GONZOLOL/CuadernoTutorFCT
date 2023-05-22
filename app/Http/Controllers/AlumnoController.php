@@ -48,7 +48,16 @@ class AlumnoController extends Controller
 
         $alumno = Alumno::create($request->all());
 
-        return redirect()->route('alumno.index')
+        // get the previous stored alumnos or create a new array
+        $alumnos = $request->session()->get('alumnoIDs', []);
+
+        // add the new alumno DNI to the array
+        $alumnos[] = $alumno->DNI;
+
+        // store it back into the session
+        $request->session()->put('alumnoIDs', $alumnos);
+
+        return redirect()->route('cuaderno-tutor.create')
             ->with('success', 'Alumno created successfully.');
     }
 

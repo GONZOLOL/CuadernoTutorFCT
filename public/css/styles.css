@@ -27,3 +27,32 @@
     align-items: center;
     margin-left: 1rem;
 }
+
+.custom-input {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.acordion button:nth-child(even) {
+    background-color: #ff0000;
+}
+
+.card-selected {
+    border: 2px solid #007bff !important;
+    background-color: #f8f9fa !important;
+}
+
+#wrapper {
+    overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -15rem;
+    transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper.toggled {
+    margin-left: 0;
+}

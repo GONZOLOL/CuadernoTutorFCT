@@ -1,6 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('CIF') }}
             {{ Form::text('CIF', $empresa->CIF, ['class' => 'form-control' . ($errors->has('CIF') ? ' is-invalid' : ''), 'placeholder' => 'Cif']) }}
@@ -88,7 +88,7 @@
         </div>
 
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+    <div class="box-footer mt-4 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" style=width:200px>{{ __('Submit') }}</button>
     </div>
 </div>

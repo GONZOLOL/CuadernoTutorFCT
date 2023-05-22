@@ -1,6 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('DNI') }}
             {{ Form::text('DNI', $alumno->DNI, ['class' => 'form-control' . ($errors->has('DNI') ? ' is-invalid' : ''), 'placeholder' => 'Dni']) }}
@@ -88,7 +88,7 @@
         </div>
 
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+    <div class="box-footer mt-4 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" style=width:200px>{{ __('Submit') }}</button>
     </div>
 </div>

@@ -83,6 +83,11 @@ class Empresa extends Model
         return $this->hasMany('App\Models\CuadernoTutor', 'CIF_EMPRESA', 'CIF');
     }
 
+    public function cuadernos()
+    {
+        return $this->hasMany(Cuaderno::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
