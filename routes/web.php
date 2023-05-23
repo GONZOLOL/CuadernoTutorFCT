@@ -7,6 +7,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\CuadernoTutorController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\TutorDocenteController;
+use App\Http\Controllers\CentroTrabajoController;
 
 
 Route::get('/', function () {
@@ -15,10 +16,9 @@ Route::get('/', function () {
 
 Route::resource('alumno', AlumnoController::class);
 
-Route::resource('products', ProductController::class);
-
-
 Route::resource('empresa', EmpresaController::class);
+
+Route::resource('centro-trabajo', CentroTrabajoController::class);
 
 Route::resource('tutor-docente', TutorDocenteController::class);
 
