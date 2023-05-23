@@ -41,13 +41,13 @@ Empresa
         <div class="accordion-item border rounded border-0 mb-4 position-relative">
             <h2 class="accordion-header">
                 <button class="accordion-button border" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapse{{ $empresa->DNI }}" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapse{{ $empresa->DNI }}">
+                    data-bs-target="#panelsStayOpen-collapse{{ $empresa->CIF }}" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapse{{ $empresa->CIF }}">
                     {{ $empresa->Nombre }}
                     <strong class="ms-3">{{ $empresa->CIF }}</strong>
                 </button>
             </h2>
-            <div id="panelsStayOpen-collapse{{ $empresa->DNI }}" class="accordion-collapse collapse">
+            <div id="panelsStayOpen-collapse{{ $empresa->CIF }}" class="accordion-collapse collapse">
                 <div class="accordion-body border">
                     <div class="detail-panel">
                         <div class="row">
@@ -199,6 +199,14 @@ Empresa
                             </div>
                         </div>
                     </div>
+                    @foreach ($empresa->centroTrabajo as $centro)
+                    <tr>
+                        <td>{{ $centro->nombre }}</td>
+                        <td>{{ $centro->direccion }}</td>
+                        <!-- Agrega más columnas según tus necesidades -->
+                    </tr>
+                    @endforeach
+
                 </div>
             </div>
             <form action="{{ route('empresa.destroy', $empresa->CIF) }}" method="POST"

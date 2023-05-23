@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use App\Models\CentroTrabajo;
 
 /**
  * Class EmpresaController
@@ -18,10 +19,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresa = Empresa::paginate();
+        $empresa = Empresa::with('centroTrabajo')->get();
 
-        return view('empresa.index', compact('empresa'))
-            ->with('i', (request()->input('page', 1) - 1) * $empresa->perPage());
+        return view('empresa.index', compact('empresa'));
     }
 
     /**
@@ -60,8 +60,9 @@ class EmpresaController extends Controller
     public function show($CIF)
     {
         $empresa = Empresa::find($CIF);
-
-        return view('empresa.show', compact('empresa'));
+        $centroTrabajo = CentroTrabajo::where('CIF_EMPRESA', $CIF)->get();
+    
+        return view('empresa.show', compact('empresa', 'centroTrabajo'));
     }
 
     /**
