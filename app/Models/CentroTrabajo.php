@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $updated_at
  *
  * @property Empresa $empresa
- * @property TutorLaboral[] $tutorLaborals
+ * @property TutorLaboral[] $tutorLaboral
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -61,9 +61,9 @@ class CentroTrabajo extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tutorLaborals()
+    public function tutorLaboral()
     {
-        return $this->hasMany('App\Models\TutorLaboral', 'Denominacion_centro', 'Denominacion');
+        return $this->hasMany('App\Models\TutorLaboral', 'id', 'id');
     }
     
 

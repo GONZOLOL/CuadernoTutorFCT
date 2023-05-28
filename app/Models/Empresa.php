@@ -31,7 +31,7 @@ use App\Models\CentroTrabajo;
  *
  * @property CentroTrabajo[] $centroTrabajo
  * @property CuadernoTutor[] $cuadernoTutor
- * @property TutorLaboral[] $tutorLaborals
+ * @property TutorLaboral[] $tutorLaboral
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */

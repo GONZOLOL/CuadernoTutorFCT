@@ -64,7 +64,7 @@ Tutor Docente
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tutorDocentes as $tutorDocente)
+                                @foreach ($tutorDocente as $tutorDocente)
                                 <tr>
                                     <td>{{ $tutorDocente->DNI }}</td>
                                     <td>{{ $tutorDocente->Apellido_1 }}</td>
@@ -90,7 +90,7 @@ Tutor Docente
                     </div>
                 </div>
             </div>
-            {!! $tutorDocentes->links() !!}
+            {!! $tutorDocente->links() !!}
         </div>
     </div>
 </div>
