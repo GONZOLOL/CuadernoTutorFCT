@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Visita;
 
 /**
  * Class CuadernoTutor
@@ -22,9 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Tiene[] $tienes
  * @property TutorDocente $tutorDocente
  * @property ValoracionAlumno[] $valoracionAlumnos
- * @property ValoracionFinalTutorDocente[] $valoracionFinaltutorDocente
- * @property ValoraciónFinalTutorLaboral[] $valoraciónFinaltutorLaboral
- * @property Visitum[] $visitas
+ * @property ValoracionFinalTutorDocente[] $valoracionFinalTutorDocente
+ * @property ValoraciónFinalTutorLaboral[] $valoraciónFinalTutorLaboral
+ * @property Visita[] $visita
+
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -150,9 +152,9 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function visitas()
+    public function visita()
     {
-        return $this->hasMany('App\Models\Visitum', 'Id_cuaderno', 'Id_cuaderno');
+        return $this->hasMany(Visita::class, 'Id_cuaderno', 'Id_cuaderno');
     }
     
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Empresa;
 use App\Models\TutorDocente;
 use App\Models\Alumno;
+use App\Models\Visita;
+ 
 
 /**
  * Class CuadernoTutorController
@@ -21,10 +23,8 @@ class CuadernoTutorController extends Controller
      */
     public function index()
     {
-        $cuadernoTutor = CuadernoTutor::paginate();
-
-        return view('cuaderno-tutor.index', compact('cuadernoTutor'))
-            ->with('i', (request()->input('page', 1) - 1) * $cuadernoTutor->perPage());
+       $cuadernoTutor = CuadernoTutor::with('visita')->get();
+       return view('cuaderno-tutor.index', compact('cuadernoTutor'));
     }
 
     /**
@@ -92,6 +92,7 @@ class CuadernoTutorController extends Controller
     public function show($Id_cuaderno)
     {
         $cuadernoTutor = CuadernoTutor::find($Id_cuaderno);
+        $visita = Visita::where('ID_CUADERNO', $Id_cuaderno) -> get();
 
         return view('cuaderno-tutor.show', compact('cuadernoTutor'));
     }
