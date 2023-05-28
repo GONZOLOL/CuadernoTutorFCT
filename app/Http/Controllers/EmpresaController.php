@@ -31,7 +31,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $empresa = new Empresa();
+        $empresa = new Empresa;
+
         return view('empresa.create', compact('empresa'));
     }
 
@@ -46,10 +47,11 @@ class EmpresaController extends Controller
         request()->validate(Empresa::$rules);
 
         $empresa = Empresa::create($request->all());
-
-        return redirect()->route('empresa.index')
-            ->with('success', 'Empresa created successfully.');
+        
+        return redirect()->route('centro-trabajo.create', ['CIF_EMPRESA' => $empresa->CIF])
+            ->with('success', 'Empresa creada exitosamente. Ahora puedes agregar el centro de trabajo.');
     }
+    
 
     /**
      * Display the specified resource.

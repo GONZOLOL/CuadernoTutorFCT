@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CentroTrabajo;
 use Illuminate\Http\Request;
+use App\Models\Empresa;
 
 /**
  * Class CentroTrabajoController
@@ -20,6 +21,7 @@ class CentroTrabajoController extends Controller
     {
         $centroTrabajo = CentroTrabajo::paginate();
 
+
         return view('centro-trabajo.index', compact('centroTrabajo'))
             ->with('i', (request()->input('page', 1) - 1) * $centroTrabajo->perPage());
     }
@@ -29,10 +31,12 @@ class CentroTrabajoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $CIF_EMPRESA = $request->route('CIF_EMPRESA');
         $centroTrabajo = new CentroTrabajo();
-        return view('centro-trabajo.create', compact('centroTrabajo'));
+
+        return view('centro-trabajo.create', compact('centroTrabajo', 'CIF_EMPRESA'));
     }
 
     /**
@@ -44,11 +48,12 @@ class CentroTrabajoController extends Controller
     public function store(Request $request)
     {
         request()->validate(CentroTrabajo::$rules);
-
+    
         $centroTrabajo = CentroTrabajo::create($request->all());
-
-        return redirect()->route('centro-trabajo.index')
-            ->with('success', 'CentroTrabajo created successfully.');
+    
+        return redirect()->route('empresa.index')
+        ->with('success', 'Centro de trabajo creado exitosamente.');
+    
     }
 
     /**
