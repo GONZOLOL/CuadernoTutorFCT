@@ -18,10 +18,10 @@ class TutorDocenteController extends Controller
      */
     public function index()
     {
-        $tutorDocentes = TutorDocente::paginate();
+        $tutorDocente = TutorDocente::paginate();
 
-        return view('tutor-docente.index', compact('tutorDocentes'))
-            ->with('i', (request()->input('page', 1) - 1) * $tutorDocentes->perPage());
+        return view('tutor-docente.index', compact('tutorDocente'))
+            ->with('i', (request()->input('page', 1) - 1) * $tutorDocente->perPage());
     }
 
     /**

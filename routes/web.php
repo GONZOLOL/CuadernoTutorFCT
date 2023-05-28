@@ -8,6 +8,10 @@ use App\Http\Controllers\CuadernoTutorController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\TutorDocenteController;
 
+use App\Http\Controllers\CentroTrabajoController;
+use App\Http\Controllers\TutorLaboralController;
+
+
 
 Route::get('/', function () {
     return view('/default');
@@ -31,9 +35,11 @@ Route::resource('cuaderno-tutor', CuadernoTutorController::class);
 
 Route::resource('visita', VisitaController::class);
 
+Route::get('{Id_cuaderno}/visita/create/', [VisitaController::class, 'create'])->name('visita.create');
+
+Route::resource('tutor-laboral', TutorLaboralController::class);
 
 Route::get('cuaderno-tutor/{cuaderno_tutor_id}/alumno/create', 'AlumnoController@create');
-
 
 
 Auth::routes();

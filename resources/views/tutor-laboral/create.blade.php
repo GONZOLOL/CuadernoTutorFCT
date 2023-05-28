@@ -1,30 +1,31 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Tutor Laboral
+{{ __('Create') }} Tutor Laboral
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+<section class="content container">
+    <div class="row">
+        <div class="col-md-12">
 
-                @includeif('partials.errors')
+            @includeif('partials.errors')
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Tutor Laboral</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('tutor-laborals.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
+            <div class="card card-default">
+                <div class="card-header">
+                    <span class="card-title">{{ __('Create') }} Tutor Laboral</span>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('tutor-laboral.store') }}" role="form"
+                        enctype="multipart/form-data">
+                        @csrf
 
-                            @include('tutor-laboral.form')
+                        @include('tutor-laboral.form')
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection

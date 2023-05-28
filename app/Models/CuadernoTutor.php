@@ -22,9 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Tiene[] $tienes
  * @property TutorDocente $tutorDocente
  * @property ValoracionAlumno[] $valoracionAlumnos
- * @property ValoracionFinalTutorDocente[] $valoracionFinalTutorDocentes
- * @property ValoraciónFinalTutorLaboral[] $valoraciónFinalTutorLaborals
+ * @property ValoracionFinalTutorDocente[] $valoracionFinalTutorDocente
+ * @property ValoraciónFinalTutorLaboral[] $valoraciónFinalTutorLaboral
  * @property Visita[] $visita
+
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -134,7 +135,7 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function valoracionFinalTutorDocentes()
+    public function valoracionFinaltutorDocente()
     {
         return $this->hasMany('App\Models\ValoracionFinalTutorDocente', 'Id_cuaderno', 'Id_cuaderno');
     }
@@ -142,7 +143,7 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function valoraciónFinalTutorLaborals()
+    public function valoraciónFinaltutorLaboral()
     {
         return $this->hasMany('App\Models\ValoraciónFinalTutorLaboral', 'Id_cuaderno', 'Id_cuaderno');
     }
