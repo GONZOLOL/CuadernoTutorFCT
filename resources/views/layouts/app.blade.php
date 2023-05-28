@@ -25,7 +25,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/cuaderno-tutor') }}">
                     {{ config('app.name', 'Cuaderno Tutor FCT') }}
@@ -40,7 +40,46 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                        @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Alumnos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('alumno.index') }}">Listado de alumnos</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('alumno.create') }}">Añadir alumno</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Empresas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('empresa.index') }}">Listado de empresas</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('empresa.create') }}">Añadir empresa</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('centro-trabajo.index') }}">Listado de
+                                        Centros de
+                                        Trabajo
+                                    </a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('tutor-laboral.index') }}">Listado de
+                                        tutores laborales
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tutor-docente.index') }}">Tutores Docentes</a>
+                        </li>
+
+                        @endauth
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
