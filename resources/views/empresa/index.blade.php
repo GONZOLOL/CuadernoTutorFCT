@@ -41,13 +41,13 @@ Empresa
         <div class="accordion-item border rounded border-0 mb-4 position-relative">
             <h2 class="accordion-header">
                 <button class="accordion-button border" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapse{{ $empresa->DNI }}" aria-expanded="true"
-                    aria-controls="panelsStayOpen-collapse{{ $empresa->DNI }}">
+                    data-bs-target="#panelsStayOpen-collapse{{ $empresa->CIF }}" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapse{{ $empresa->CIF }}">
                     {{ $empresa->Nombre }}
                     <strong class="ms-3">{{ $empresa->CIF }}</strong>
                 </button>
             </h2>
-            <div id="panelsStayOpen-collapse{{ $empresa->DNI }}" class="accordion-collapse collapse">
+            <div id="panelsStayOpen-collapse{{ $empresa->CIF }}" class="accordion-collapse collapse">
                 <div class="accordion-body border">
                     <div class="detail-panel">
                         <div class="row">
@@ -199,10 +199,66 @@ Empresa
                             </div>
                         </div>
                     </div>
+
+                    @foreach ($empresa->centroTrabajo as $centro)
+                    <div class="accordion" id="accordionChild">
+                        <div class="accordion-item border rounded border-0 mb-4">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button border" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span>Centro de trabajo |</span>
+                                    <span>
+                                        {{ $centro->Denominacion }}
+                                    </span>
+                                    <span>
+                                        | Domicilio
+                                        {{ $centro->Domicilio }}
+                                    </span>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionChild">
+                                <div class="accordion-body border">
+                                    <div class="d-flex flex-column my-2">
+                                        <span class="detail-label">Denominacion</span>
+                                        <span class="custom-input">
+                                            <span class="detail-primary">
+                                                {{ $centro->Denominacion }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column my-2">
+                                        <span class="detail-label">Domicilio</span>
+                                        <span class="custom-input">
+                                            <span class="detail-primary">
+                                                {{ $centro->Domicilio }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column my-2">
+                                        <span class="detail-label">Poblacion</span>
+                                        <span class="custom-input">
+                                            <span class="detail-primary">
+                                                {{ $centro->Poblacion }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column my-2">
+                                        <span class="detail-label">Codigó postal</span>
+                                        <span class="custom-input">
+                                            <span class="detail-primary">
+                                                {{ $centro->Codigo_postal }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
-            <form action="{{ route('empresa.destroy', $empresa->CIF) }}" method="POST"
-                style="display:flex; gap:10px; position:absolute; top:8px; left:1122px;">
+            <form action="{{ route('empresa.destroy', $empresa->CIF) }}" method="POST" class="large-options">
                 <a class="btn btn-md btn-warning d-flex align-items-center gap-1"
                     href="{{ route('empresa.edit', $empresa->CIF) }}">
                     <i class="fa fa-fw fa-edit"></i>
@@ -217,12 +273,11 @@ Empresa
                     <i class="bi bi-trash-fill"></i>
                 </button>
             </form>
+            @endforeach
         </div>
-        @endforeach
     </div>
-
     <div class="my-5 d-flex justify-content-end">
-        <a href="{{ route('cuaderno-tutor.create') }}" class="btn btn-primary float-end" data-placement="left"
+        <a href="{{ route('cuaderno-tutor.create') }}" class="btn btn-primary" data-placement="left"
             style="width: 180px">
             {{ __('Siguiente') }}
         </a>

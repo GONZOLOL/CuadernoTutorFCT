@@ -8,8 +8,6 @@ use App\Models\Empresa;
 use App\Models\TutorDocente;
 use App\Models\Alumno;
 
-
-
 /**
  * Class CuadernoTutorController
  * @package App\Http\Controllers
