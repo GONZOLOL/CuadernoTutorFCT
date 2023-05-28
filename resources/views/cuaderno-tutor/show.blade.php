@@ -71,7 +71,6 @@
                             </div>
                         </div>
                         <div class="accordion" id="accordionExample">
-                            <!-- Info tutor docente -->
                             <div class="accordion-item border rounded border-0 mb-4">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button border" type="button" data-bs-toggle="collapse"
@@ -119,7 +118,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Info empresas -->
                             <div class="accordion-item border rounded border-0 mb-4">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button border" type="button" data-bs-toggle="collapse"
@@ -264,7 +262,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Info alumnos -->
                             <div class="accordion-item border rounded border-0 mb-4">
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button border" type="button" data-bs-toggle="collapse"

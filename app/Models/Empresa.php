@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CentroTrabajo;
+
 
 /**
  * Class Empresa
@@ -27,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property CentroTrabajo[] $centroTrabajos
+ * @property CentroTrabajo[] $centroTrabajo
  * @property CuadernoTutor[] $cuadernoTutor
  * @property TutorLaboral[] $tutorLaborals
  * @package App
@@ -40,6 +42,8 @@ class Empresa extends Model
     protected $primaryKey = "CIF";
 
     protected $keyType = 'string';
+
+    public $incrementing = false;
 
     
     static $rules = [
@@ -72,7 +76,7 @@ class Empresa extends Model
      */
     public function centroTrabajo()
     {
-        return $this->hasMany('App\Models\CentroTrabajo', 'CIF_EMPRESA', 'CIF');
+        return $this->hasMany(CentroTrabajo::class, 'CIF_EMPRESA', 'CIF');
     }
     
     /**

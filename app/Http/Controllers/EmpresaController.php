@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use App\Models\CentroTrabajo;
 
 /**
  * Class EmpresaController
@@ -18,10 +19,9 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresa = Empresa::paginate();
+        $empresa = Empresa::with('centroTrabajo')->get();
 
-        return view('empresa.index', compact('empresa'))
-            ->with('i', (request()->input('page', 1) - 1) * $empresa->perPage());
+        return view('empresa.index', compact('empresa'));
     }
 
     /**
@@ -31,7 +31,8 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $empresa = new Empresa();
+        $empresa = new Empresa;
+
         return view('empresa.create', compact('empresa'));
     }
 
@@ -46,10 +47,11 @@ class EmpresaController extends Controller
         request()->validate(Empresa::$rules);
 
         $empresa = Empresa::create($request->all());
-
-        return redirect()->route('empresa.index')
-            ->with('success', 'Empresa created successfully.');
+        
+        return redirect()->route('centro-trabajo.create', ['CIF_EMPRESA' => $empresa->CIF])
+            ->with('success', 'Empresa creada exitosamente. Ahora puedes agregar el centro de trabajo.');
     }
+    
 
     /**
      * Display the specified resource.
@@ -60,8 +62,9 @@ class EmpresaController extends Controller
     public function show($CIF)
     {
         $empresa = Empresa::find($CIF);
-
-        return view('empresa.show', compact('empresa'));
+        $centroTrabajo = CentroTrabajo::where('CIF_EMPRESA', $CIF)->get();
+    
+        return view('empresa.show', compact('empresa', 'centroTrabajo'));
     }
 
     /**
