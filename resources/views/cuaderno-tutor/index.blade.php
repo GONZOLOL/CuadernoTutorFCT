@@ -30,13 +30,13 @@ Cuaderno Tutor
         </div>
         <a href="{{ route('empresa.create') }}"
             class="btn btn-success d-flex justify-content-center align-items-center gap-1" data-placement="center"
-            style=width:180px>
+            style=width:200px>
             {{ __('Crear cuaderno tutor') }}
             <i class="bi bi-plus-lg d-flex align-items-center"></i>
         </a>
     </div>
 
-    <div class="accordion mt-5" id="accordionExample" style="max-width: 1100px">
+    <div class="accordion mt-5" id="accordionExample" style="max-width: 1000px">
         @foreach ($cuadernoTutor as $cuadernoTutor)
 
         <div class="accordion-item border rounded border-0 mb-4 position-relative">
@@ -104,8 +104,14 @@ Cuaderno Tutor
                 </div>
             </div>
             <form action="{{ route('cuaderno-tutor.destroy',$cuadernoTutor->Id_cuaderno) }}" method="POST"
-                class="large-options">
-                <a class="btn btn-md btn-warning d-flex align-items-center gap-1"
+                class="extra-large-options">
+                <a class="btn btn-md btn-primary d-flex align-items-center gap-1"
+                    href="{{ route('cuaderno-tutor.show',$cuadernoTutor->Id_cuaderno) }}">
+                    <i class="fa fa-fw fa-show">
+                    </i> {{ __('Show') }}
+                    <i class="bi bi-eye"></i>
+                </a>
+                <a class=" btn btn-md btn-warning d-flex align-items-center gap-1"
                     href="{{ route('cuaderno-tutor.edit',$cuadernoTutor->Id_cuaderno) }}">
                     <i class="fa fa-fw fa-edit">
                     </i> {{ __('Edit') }}
