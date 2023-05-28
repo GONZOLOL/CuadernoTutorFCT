@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property $DNI
  * @property $Nombre
  * @property $Apellidos
- * @property $Denominacion_centro
  * @property $CIF_EMPRESA
  * @property $created_at
  * @property $updated_at
@@ -23,12 +22,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TutorLaboral extends Model
 {
-    
+    protected $table = 'tutor_laboral';
+
+    protected $primaryKey = "DNI";
+
+    protected $keyType = 'string';
+
     static $rules = [
 		'DNI' => 'required',
 		'Nombre' => 'required',
 		'Apellidos' => 'required',
-		'Denominacion_centro' => 'required',
+		'id_centro' => 'required',
 		'CIF_EMPRESA' => 'required',
     ];
 
@@ -39,7 +43,7 @@ class TutorLaboral extends Model
      *
      * @var array
      */
-    protected $fillable = ['DNI','Nombre','Apellidos','Denominacion_centro','CIF_EMPRESA'];
+    protected $fillable = ['DNI','Nombre','Apellidos','id_centro','CIF_EMPRESA'];
 
 
     /**
@@ -47,7 +51,7 @@ class TutorLaboral extends Model
      */
     public function centroTrabajo()
     {
-        return $this->hasOne('App\Models\CentroTrabajo', 'Denominacion', 'Denominacion_centro');
+        return $this->hasOne('App\Models\CentroTrabajo', 'id', 'id_centro');
     }
     
     /**

@@ -73,6 +73,14 @@
     left: 1122px;
 }
 
+.extra-large-options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 8px;
+    left: 1022px;
+}
+
 @media screen and (max-width: 1400px) {
     .options {
         top: 80px;

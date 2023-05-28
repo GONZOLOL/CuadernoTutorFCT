@@ -1,79 +1,100 @@
 @extends('layouts.app')
 
+@section('head')
+<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+@endsection
+
 @section('template_title')
-    Tutor Laboral
+Tutor Laboral
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="container d-flex flex-column">
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
 
-                            <span id="card_title">
-                                {{ __('Tutor Laboral') }}
-                            </span>
+    <div class="mb-1 d-flex justify-content-between">
+        <div>
+            <h2 class="text-center">Tutores Laborales</h2>
+        </div>
+        <a href="{{ route('tutor-laboral.create') }}"
+            class="btn btn-success d-flex justify-content-center align-items-center" data-placement="center"
+            style=width:180px>
+            {{ __('Añadir tutor laboral') }}
+            <i class="bi bi-plus"></i>
+        </a>
+    </div>
+    <div class="accordion" id="accordionExample" style="max-width:1100px; margin-top: 40px;">
+        @foreach ($tutorLaboral as $tutor)
+        <div class="accordion-item border rounded border-0 mb-4 position-relative">
+            <h2 class="accordion-header">
+                <button class="accordion-button border" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapse{{ $tutor->DNI }}" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapse{{ $tutor->DNI }}">
+                    {{ $tutor->Nombre }}
+                    {{ $tutor->Apellidos }}
+                    <strong class="ms-3">{{ $tutor->DNI }}</strong>
+                </button>
+            </h2>
 
-                             <div class="float-right">
-                                <a href="{{ route('tutor-laborals.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+            <div id="panelsStayOpen-collapse{{ $tutor->DNI }}" class="accordion-collapse collapse">
+                <div class="accordion-body border">
+                    <div class="detail-panel">
+                        <div class="row">
+                            <div class="col-12 col-md-6 my-2">
+                                <span class="detail-label mx-3">DNI</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $tutor->DNI }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 my-2">
+                                <span class="detail-label mx-3">Nombre</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $tutor->Nombre }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 my-2">
+                                <span class="detail-label mx-3">Apellidos</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $tutor->Apellidos }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-12 col-md-6 my-2">
+                                <span class="detail-label mx-3">id_centro</span>
+                                <span class="detail-input">
+                                    <span class="detail-value">
+                                        {{ $tutor->id_centro }}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <form action="{{ route('tutor-laboral.destroy', $tutor->DNI) }}" method="POST"
+                                class="delete-form">
+                                <a href="{{ route('tutor-laboral.edit', $tutor->DNI) }}" class="btn btn-primary mx-2">
+                                    Editar
                                 </a>
-                              </div>
-                        </div>
-                    </div>
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                    @endif
 
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead">
-                                    <tr>
-                                        <th>No</th>
-                                        
-										<th>Dni</th>
-										<th>Nombre</th>
-										<th>Apellidos</th>
-										<th>Denominacion Centro</th>
-										<th>Cif Empresa</th>
+                                @csrf
+                                @method('DELETE')
 
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tutorLaborals as $tutorLaboral)
-                                        <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $tutorLaboral->DNI }}</td>
-											<td>{{ $tutorLaboral->Nombre }}</td>
-											<td>{{ $tutorLaboral->Apellidos }}</td>
-											<td>{{ $tutorLaboral->Denominacion_centro }}</td>
-											<td>{{ $tutorLaboral->CIF_EMPRESA }}</td>
-
-                                            <td>
-                                                <form action="{{ route('tutor-laborals.destroy',$tutorLaboral->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('tutor-laborals.show',$tutorLaboral->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('tutor-laborals.edit',$tutorLaboral->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                <button type="submit" class="btn btn-danger mx-2">Eliminar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                {!! $tutorLaborals->links() !!}
             </div>
         </div>
+        @endforeach
     </div>
+</div>
 @endsection

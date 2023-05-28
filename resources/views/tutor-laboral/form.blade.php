@@ -1,6 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
             {{ Form::label('DNI') }}
             {{ Form::text('DNI', $tutorLaboral->DNI, ['class' => 'form-control' . ($errors->has('DNI') ? ' is-invalid' : ''), 'placeholder' => 'Dni']) }}
@@ -17,9 +17,9 @@
             {!! $errors->first('Apellidos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Denominacion_centro') }}
-            {{ Form::text('Denominacion_centro', $tutorLaboral->Denominacion_centro, ['class' => 'form-control' . ($errors->has('Denominacion_centro') ? ' is-invalid' : ''), 'placeholder' => 'Denominacion Centro']) }}
-            {!! $errors->first('Denominacion_centro', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('id_centro') }}
+            {{ Form::text('id_centro', $tutorLaboral->id_centro, ['class' => 'form-control' . ($errors->has('id_centro') ? ' is-invalid' : ''), 'placeholder' => 'id_centro']) }}
+            {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('CIF_EMPRESA') }}
