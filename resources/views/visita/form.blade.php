@@ -1,6 +1,10 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+        <div class="form-group">
+            {{ Form::label('Id_cuaderno') }}
+            {{ Form::text('Id_cuaderno', $Id_cuaderno ?? "", ['class' => 'form-control' . ($errors->has('Id_cuaderno') ? ' is-invalid' : ''), 'placeholder' => 'Id_cuaderno']) }}
+            {!! $errors->first('Id_cuaderno', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
        
         <div class="form-group">
             {{ Form::label('Fecha') }}

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Visita;
 
 /**
  * Class CuadernoTutor
@@ -152,7 +153,7 @@ class CuadernoTutor extends Model
      */
     public function visita()
     {
-        return $this->hasMany('App\Models\visita', 'Id_cuaderno', 'Id_cuaderno');
+        return $this->hasMany(Visita::class, 'Id_cuaderno', 'Id_cuaderno');
     }
     
 

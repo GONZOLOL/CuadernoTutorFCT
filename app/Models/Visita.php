@@ -27,9 +27,11 @@ class Visita extends Model
     protected $primaryKey = "Id_visita";
 
     static $rules = [
+    'Id_cuaderno'=> 'required',
 		'Fecha' => 'required',
 		'Incidencia' => 'required',
 		'Núm_visitas_previstas' => 'required',
+    
     ];
 
     protected $perPage = 20;
@@ -39,7 +41,7 @@ class Visita extends Model
      *
      * @var array
      */
-    protected $fillable = ['Fecha','Incidencia','Observaciones','Núm_visitas_previstas'];
+    protected $fillable = ['Fecha','Incidencia','Observaciones','Núm_visitas_previstas', 'Id_cuaderno'];
 
 
     /**

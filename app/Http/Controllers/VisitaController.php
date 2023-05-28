@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visita;
 use Illuminate\Http\Request;
+use App\Models\CuadernoTutor;
 
 /**
  * Class visitaController
@@ -29,10 +30,12 @@ class VisitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $Id_cuaderno)
     {
+        $Id_cuaderno = $request->route('Id_cuaderno');
         $visita = new Visita();
-        return view('visita.create', compact('visita'));
+        $url = route('visita.create', ['Id_cuaderno' => $Id_cuaderno]);
+        return view('visita.create', compact('visita', 'Id_cuaderno'));
     }
 
     /**
