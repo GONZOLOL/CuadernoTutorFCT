@@ -55,7 +55,7 @@ class CentroTrabajo extends Model
      */
     public function empresa()
     {
-        return $this->hasOne('App\Models\Empresa', 'CIF', 'CIF_EMPRESA');
+        return $this->hasOne('App\Models\Empresa', 'CIF_EMPRESA', 'CIF');
     }
     
     /**

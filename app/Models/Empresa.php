@@ -43,6 +43,8 @@ class Empresa extends Model
 
     protected $keyType = 'string';
 
+    public $incrementing = false;
+
     
     static $rules = [
 		'CIF' => 'required',
