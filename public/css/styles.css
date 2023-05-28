@@ -56,3 +56,28 @@
 #sidebar-wrapper.toggled {
     margin-left: 0;
 }
+
+.options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 8px;
+    left: 1110px;
+}
+
+.large-options {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 8px;
+    left: 1122px;
+}
+
+@media screen and (max-width: 1400px) {
+    .options {
+        top: 80px;
+        left: 720px;
+    }
+    .large-options {
+    }
+}

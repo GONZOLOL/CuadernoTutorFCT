@@ -1,6 +1,11 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
+        <div class="form-group">
+            {{ Form::label('CIF_EMPRESA') }}
+            {{ Form::text('CIF_EMPRESA', $CIF_EMPRESA ?? "", ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Cif Empresa']) }}
+            {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
         <div class="form-group">
             {{ Form::label('Denominacion') }}
             {{ Form::text('Denominacion', $centroTrabajo->Denominacion, ['class' => 'form-control' . ($errors->has('Denominacion') ? ' is-invalid' : ''), 'placeholder' => 'Denominacion']) }}
@@ -35,11 +40,6 @@
             {{ Form::label('Preferencias_alumnado') }}
             {{ Form::text('Preferencias_alumnado', $centroTrabajo->Preferencias_alumnado, ['class' => 'form-control' . ($errors->has('Preferencias_alumnado') ? ' is-invalid' : ''), 'placeholder' => 'Preferencias Alumnado']) }}
             {!! $errors->first('Preferencias_alumnado', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('CIF_EMPRESA') }}
-            {{ Form::text('CIF_EMPRESA', $centroTrabajo->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Cif Empresa']) }}
-            {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>
