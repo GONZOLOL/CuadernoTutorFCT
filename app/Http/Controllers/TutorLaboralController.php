@@ -18,10 +18,10 @@ class TutorLaboralController extends Controller
      */
     public function index()
     {
-        $tutorLaborals = TutorLaboral::paginate();
+        $tutorLaboral = TutorLaboral::paginate();
 
-        return view('tutor-laboral.index', compact('tutorLaborals'))
-            ->with('i', (request()->input('page', 1) - 1) * $tutorLaborals->perPage());
+        return view('tutor-laboral.index', compact('tutorLaboral'))
+            ->with('i', (request()->input('page', 1) - 1) * $tutorLaboral->perPage());
     }
 
     /**
@@ -47,7 +47,7 @@ class TutorLaboralController extends Controller
 
         $tutorLaboral = TutorLaboral::create($request->all());
 
-        return redirect()->route('tutor-laborals.index')
+        return redirect()->route('tutor-laboral.index')
             ->with('success', 'TutorLaboral created successfully.');
     }
 
@@ -90,7 +90,7 @@ class TutorLaboralController extends Controller
 
         $tutorLaboral->update($request->all());
 
-        return redirect()->route('tutor-laborals.index')
+        return redirect()->route('tutor-laboral.index')
             ->with('success', 'TutorLaboral updated successfully');
     }
 
@@ -103,7 +103,7 @@ class TutorLaboralController extends Controller
     {
         $tutorLaboral = TutorLaboral::find($id)->delete();
 
-        return redirect()->route('tutor-laborals.index')
+        return redirect()->route('tutor-laboral.index')
             ->with('success', 'TutorLaboral deleted successfully');
     }
 }
