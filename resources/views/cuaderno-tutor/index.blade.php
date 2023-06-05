@@ -113,8 +113,8 @@ Cuaderno Tutor
                 </a>
                 <a class=" btn btn-md btn-warning d-flex align-items-center gap-1"
                     href="{{ route('cuaderno-tutor.edit',$cuadernoTutor->Id_cuaderno) }}">
-                    <i class="fa fa-fw fa-edit">
-                    </i> {{ __('Edit') }}
+                    <i class="fa fa-fw fa-edit"></i>
+                    {{ __('Edit') }}
                     <i class="bi bi-pencil-square"></i>
                 </a>
 

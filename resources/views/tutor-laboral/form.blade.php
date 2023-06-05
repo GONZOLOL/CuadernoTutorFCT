@@ -17,18 +17,15 @@
             {!! $errors->first('Apellidos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('id_centro') }}
-            {{ Form::text('id_centro', $tutorLaboral->id_centro, ['class' => 'form-control' . ($errors->has('id_centro') ? ' is-invalid' : ''), 'placeholder' => 'id_centro']) }}
+            {{ Form::label('id_centro', 'Centro de trabajo') }}
+            {{ Form::select('id_centro', $centrosTrabajo, $tutorLaboral->id_centro, ['class' => 'form-control' . ($errors->has('id_centro') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar centro de trabajo']) }}
             {!! $errors->first('id_centro', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('CIF_EMPRESA') }}
-            {{ Form::text('CIF_EMPRESA', $tutorLaboral->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Cif Empresa']) }}
+            {{ Form::label('CIF_EMPRESA', 'CIF Empresa') }}
+            {{ Form::select('CIF_EMPRESA', $empresas, $tutorLaboral->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar CIF de Empresa']) }}
             {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>

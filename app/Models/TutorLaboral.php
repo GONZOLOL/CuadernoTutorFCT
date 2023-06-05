@@ -29,7 +29,7 @@ class TutorLaboral extends Model
     protected $keyType = 'string';
 
     static $rules = [
-		'DNI' => 'required',
+		'DNI' => 'required|max:9',
 		'Nombre' => 'required',
 		'Apellidos' => 'required',
 		'id_centro' => 'required',
@@ -65,10 +65,14 @@ class TutorLaboral extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function supervisas()
+    public function supervisaAlumnos()
     {
-        return $this->hasMany('App\Models\Supervisa', 'DNI_TUTOR_LABORAL', 'DNI');
+        return $this->belongsToMany(
+            'App\Models\Alumno',
+            'supervisa',
+            'DNI_TUTOR_LABORAL',
+            'DNI_alumno',
+        );
     }
-    
 
 }

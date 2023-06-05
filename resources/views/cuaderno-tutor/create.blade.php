@@ -28,17 +28,17 @@
                         <div class="my-3">
                             <h5>Selecciona los alumnos:</h5>
                             <div class="row">
-                                @foreach ($alumnos as $alumno)
-                                <div class="col-md-12 my-2">
-                                    <div class="card" id="card{{ $alumno->DNI }}">
+                                @foreach ($alumnos as $alumnos)
+                                <div class="col-lg-3 my-2">
+                                    <div class="card" id="card{{ $alumnos->DNI }}">
                                         <div class="card-body">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox"
-                                                    value="{{ $alumno->DNI }}" id="alumno{{ $alumno->DNI }}"
-                                                    name="alumnos[]" required
-                                                    onchange="toggleCardSelected('card{{ $alumno->DNI }}')">
-                                                <label class="form-check-label" for="alumno{{ $alumno->DNI }}">
-                                                    {{ $alumno->Nombre }} {{ $alumno->Apellidos }} {{ $alumno->DNI }}
+                                                    value="{{ $alumnos->DNI }}" id="alumnos{{ $alumnos->DNI }}"
+                                                    name="alumnoss[]" required
+                                                    onchange="toggleCardSelected('card{{ $alumnos->DNI }}')">
+                                                <label class="form-check-label" for="alumnos{{ $alumnos->DNI }}">
+                                                    {{ $alumnos->Nombre }} {{ $alumnos->Apellidos }} {{ $alumnos->DNI }}
                                                 </label>
                                             </div>
                                         </div>
