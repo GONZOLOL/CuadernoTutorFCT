@@ -10,9 +10,6 @@ use App\Http\Controllers\TutorDocenteController;
 use App\Http\Controllers\CentroTrabajoController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\TutorLaboralController;
-
-
-
 Route::get('/', function () {
     return view('/default');
 });
@@ -35,7 +32,9 @@ Route::resource('cuaderno-tutor', CuadernoTutorController::class);
 
 Route::resource('visita', VisitaController::class);
 
-Route::get('{Id_cuaderno}/visita/create/', [VisitaController::class, 'create'])->name('visita.create');
+Route::get('cuaderno-tutor/{Id_cuaderno}/visita/create', [VisitaController::class, 'create'])->name('visita.create');
+
+Route::get('cuaderno-tutor/{Id_cuaderno}/visita', [VisitaController::class, 'index'])->name('visita.index');
 
 Route::resource('tutor-laboral', TutorLaboralController::class);
 

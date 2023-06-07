@@ -31,7 +31,6 @@ class Visita extends Model
 		'Fecha' => 'required',
 		'Incidencia' => 'required',
 		'Núm_visitas_previstas' => 'required',
-    
     ];
 
     protected $perPage = 20;
@@ -41,8 +40,7 @@ class Visita extends Model
      *
      * @var array
      */
-    protected $fillable = ['Fecha','Incidencia','Observaciones','Núm_visitas_previstas', 'Id_cuaderno'];
-
+    protected $fillable = ['Id_cuaderno', 'Fecha','Incidencia','Observaciones','Núm_visitas_previstas'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -51,6 +49,4 @@ class Visita extends Model
     {
         return $this->hasOne('App\Models\CuadernoTutor', 'Id_cuaderno', 'Id_cuaderno');
     }
-    
-
 }
