@@ -1,11 +1,6 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('Id_cuaderno') }}
-            {{ Form::text('Id_cuaderno', $Id_cuaderno ?? "", ['class' => 'form-control' . ($errors->has('Id_cuaderno') ? ' is-invalid' : ''), 'placeholder' => 'Id_cuaderno']) }}
-            {!! $errors->first('Id_cuaderno', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-       
+        {{ Form::hidden('Id_cuaderno', $Id_cuaderno) }}
         <div class="form-group">
             {{ Form::label('Fecha') }}
             {{ Form::text('Fecha', $visita->Fecha, ['class' => 'form-control' . ($errors->has('Fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha']) }}
@@ -27,6 +22,7 @@
             {!! $errors->first('Núm_visitas_previstas', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
+
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>

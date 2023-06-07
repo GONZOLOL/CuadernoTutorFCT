@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container">
         <div class="row">
             <div class="col-md-12">
 
@@ -16,7 +16,7 @@
                         <span class="card-title">{{ __('Create') }} Visita</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('visita.store') }}"  role="form" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('visita.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('visita.form')

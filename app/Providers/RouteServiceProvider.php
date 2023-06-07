@@ -24,6 +24,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        parent::boot();
+
+        Route::model('visita', Visita::class);
+        
         $this->configureRateLimiting();
 
         $this->routes(function () {
