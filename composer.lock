@@ -1172,7 +1172,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2023-06-08T20:25:36+00:00"
+=======
+            "time": "2023-06-05T15:48:15+00:00"
+>>>>>>> 141fc724d87d6d8f542311435526eddc9a02e6a9
         },
         {
             "name": "laravel/sanctum",
@@ -8141,5 +8145,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }

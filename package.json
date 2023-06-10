@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.10.5",
-        "composer": "^4.1.0"
+        "composer": "^4.1.0",
+        "curl": "^0.1.4"
     }
 }
