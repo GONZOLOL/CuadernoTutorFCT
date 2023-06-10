@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\TutorLaboral;
 use Illuminate\Http\Request;
+use App\Models\Alumno;
+use App\Models\CentroTrabajo;
+use App\Models\Empresa;
 
 /**
  * Class TutorLaboralController
@@ -32,9 +35,12 @@ class TutorLaboralController extends Controller
     public function create()
     {
         $tutorLaboral = new TutorLaboral();
-        return view('tutor-laboral.create', compact('tutorLaboral'));
-    }
+        $alumnos = Alumno::all(); // Recupera todos los alumnos
+        $centrosTrabajo = CentroTrabajo::pluck('Denominacion', 'id'); // Obtener la lista de centros de trabajo
+        $empresas = Empresa::pluck('Nombre', 'CIF');
 
+        return view('tutor-laboral.create', compact('tutorLaboral', 'alumnos', 'centrosTrabajo', 'empresas'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +52,13 @@ class TutorLaboralController extends Controller
         request()->validate(TutorLaboral::$rules);
 
         $tutorLaboral = TutorLaboral::create($request->all());
-
+        
+        if(!$tutorLaboral->exists) {
+            return redirect()->back()->withErrors('Error creating TutorLaboral');
+        }
+        
+        $tutorLaboral->supervisaAlumnos()->sync($request->alumnos);
+        
         return redirect()->route('tutor-laboral.index')
             ->with('success', 'TutorLaboral created successfully.');
     }
@@ -57,9 +69,9 @@ class TutorLaboralController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($DNI)
     {
-        $tutorLaboral = TutorLaboral::find($id);
+        $tutorLaboral = TutorLaboral::find($DNI);
 
         return view('tutor-laboral.show', compact('tutorLaboral'));
     }
@@ -70,11 +82,17 @@ class TutorLaboralController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($DNI)
     {
-        $tutorLaboral = TutorLaboral::find($id);
+        $tutorLaboral = TutorLaboral::find($DNI);
 
-        return view('tutor-laboral.edit', compact('tutorLaboral'));
+        $centrosTrabajo = CentroTrabajo::pluck('Denominacion', 'id'); // Obtener la lista de centros de trabajo
+        
+        $empresas = Empresa::pluck('Nombre', 'CIF');
+
+        $alumnos = Alumno::all(); // Recupera todos los alumnos
+
+        return view('tutor-laboral.edit', compact('tutorLaboral', 'alumnos', 'centrosTrabajo', 'empresas'));
     }
 
     /**
@@ -84,8 +102,10 @@ class TutorLaboralController extends Controller
      * @param  TutorLaboral $tutorLaboral
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TutorLaboral $tutorLaboral)
+    public function update(Request $request, $DNI)
     {
+        $tutorLaboral = TutorLaboral::findOrFail($DNI);
+
         request()->validate(TutorLaboral::$rules);
 
         $tutorLaboral->update($request->all());

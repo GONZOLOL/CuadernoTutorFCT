@@ -77,22 +77,26 @@ Tutor Laboral
                                 </span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end mt-4">
-                            <form action="{{ route('tutor-laboral.destroy', $tutor->DNI) }}" method="POST"
-                                class="delete-form">
-                                <a href="{{ route('tutor-laboral.edit', $tutor->DNI) }}" class="btn btn-primary mx-2">
-                                    Editar
-                                </a>
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger mx-2">Eliminar</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
+            <form action="{{ route('tutor-laboral.destroy', $tutor->DNI) }}" method="POST" class="options">
+                <a href="{{ route('tutor-laboral.edit', $tutor->DNI) }}"
+                    class=" btn btn-md btn-warning d-flex align-items-center gap-1">
+                    <i class="fa fa-fw fa-edit"></i>
+                    {{ __('Edit') }}
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn btn-danger btn-md d-flex align-items-center gap-1">
+                    <i class="fa fa-fw fa-trash"></i>
+                    {{ __('Delete') }}
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </form>
         </div>
         @endforeach
     </div>
