@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Alumno
@@ -34,11 +35,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Alumno extends Model
 {
+    use HasFactory;
+
     public $table = "alumno";
 
     protected $primaryKey = "DNI";
     
     protected $keyType = 'string';
+    
+    protected $dates = [
+        'Fecha_nacimiento',
+    ];
     
     static $rules = [
 		'DNI' => 'required',
