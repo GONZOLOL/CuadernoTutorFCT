@@ -42,6 +42,8 @@ class CuadernoTutor extends Model
 		'ciclo_formativo_curso_actual' => 'required',
 		'CIF_EMPRESA' => 'required',
 		'DNI_tutor_docente' => 'required',
+        'visitas_previstas' => 'required',
+        'plan_formativo' => 'required|mimes:pdf|max:2000',
     ];
 
     protected $perPage = 20;
@@ -51,7 +53,7 @@ class CuadernoTutor extends Model
      *
      * @var array
      */
-    protected $fillable = ['trimestre','ciclo_formativo_curso_actual','plan_formativo','CIF_EMPRESA','DNI_tutor_docente'];
+    protected $fillable = ['trimestre','ciclo_formativo_curso_actual','plan_formativo','CIF_EMPRESA','DNI_tutor_docente', 'visitas_previstas'];
 
 
     /**
