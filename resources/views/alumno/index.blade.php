@@ -215,10 +215,12 @@ Alumno
             @endforeach
         </div>
     </div>
-</div>
-<div class="my-5 d-flex justify-content-end">
-    <a href="{{ route('cuaderno-tutor.create') }}" class="btn btn-primary" data-placement="left" style=width:180px>
-        {{ __('Siguiente') }}
-    </a>
+    <div class="d-flex justify-content-end pt-4">
+        <a href="{{ route('cuaderno-tutor.create') }}"
+            class="btn btn-primary d-flex justify-content-center align-items-center" data-placement="center"
+            style=width:180px>
+            {{ __('Siguiente') }}
+        </a>
+    </div>
 </div>
 @endsection

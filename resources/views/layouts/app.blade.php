@@ -41,41 +41,48 @@
                     <ul class="navbar-nav me-auto">
 
                         @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Alumnos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('alumno.index') }}">Listado de alumnos</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('alumno.create') }}">Añadir alumno</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Empresas
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('empresa.index') }}">Listado de empresas</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('empresa.create') }}">Añadir empresa</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('centro-trabajo.index') }}">Listado de
-                                        Centros de
-                                        Trabajo
-                                    </a>
-                                </li>
-                                <li><a class="dropdown-item" href="{{ route('tutor-laboral.index') }}">Listado de
-                                        tutores laborales
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tutor-docente.index') }}">Tutores Docentes</a>
-                        </li>
+                        <div class="d-flex gap-2">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle bg-white rounded text-black" href="#"
+                                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Alumnos
+                                </a>
+                                <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('alumno.defaultAlumnoIndex') }}">Listado
+                                            de
+                                            alumnos</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('alumno.create') }}">Añadir alumno</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle  bg-white rounded text-black" href="#"
+                                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Empresas
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('empresa.defaultIndex') }}">Listado de
+                                            empresas</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('empresa.create') }}">Añadir empresa</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('centro-trabajo.index') }}">Listado de
+                                            Centros de
+                                            Trabajo
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('tutor-laboral.index') }}">Listado de
+                                            tutores laborales
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  bg-white rounded text-black"
+                                    href="{{ route('tutor-docente.index') }}">Tutores Docentes</a>
+                            </li>
+                        </div>
 
                         @endauth
                     </ul>

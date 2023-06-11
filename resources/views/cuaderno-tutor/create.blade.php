@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="container mt-5">
+<div class="container ">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
@@ -26,19 +26,27 @@
                         @include('cuaderno-tutor.form')
 
                         <div class="my-3">
-                            <h5>Selecciona los alumnos:</h5>
+                            <div class="d-flex justify-content-between items-center">
+                                <h5>Selecciona los alumnos:</h5>
+                                <a href="{{ route('alumno.cuadernoAlumnoCreate') }}"
+                                    class="btn btn-success d-flex justify-content-center align-items-center"
+                                    data-placement="center" style=width:180px>
+                                    {{ __('Añadir alumno') }}
+                                    <i class="bi bi-plus"></i>
+                                </a>
+                            </div>
                             <div class="row">
-                                @foreach ($alumnos as $alumnos)
+                                @foreach ($alumnos as $alumno)
                                 <div class="col-lg-3 my-2">
-                                    <div class="card" id="card{{ $alumnos->DNI }}">
+                                    <div class="card" id="card{{ $alumno->DNI }}">
                                         <div class="card-body">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox"
-                                                    value="{{ $alumnos->DNI }}" id="alumnos{{ $alumnos->DNI }}"
-                                                    name="alumnoss[]" required
-                                                    onchange="toggleCardSelected('card{{ $alumnos->DNI }}')">
-                                                <label class="form-check-label" for="alumnos{{ $alumnos->DNI }}">
-                                                    {{ $alumnos->Nombre }} {{ $alumnos->Apellidos }} {{ $alumnos->DNI }}
+                                                    value="{{ $alumno->DNI }}" id="alumno{{ $alumno->DNI }}"
+                                                    name="alumnos[]" required
+                                                    onchange="toggleCardSelected('card{{ $alumno->DNI }}')">
+                                                <label class="form-check-label" for="alumno{{ $alumno->DNI }}">
+                                                    {{ $alumno->Nombre }} {{ $alumno->Apellidos }} {{ $alumno->DNI }}
                                                 </label>
                                             </div>
                                         </div>

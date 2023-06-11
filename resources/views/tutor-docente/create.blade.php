@@ -28,6 +28,10 @@
 
                         @include('tutor-docente.form')
 
+                        <div class="box-footer mt-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary"
+                                style=width:200px>{{ __('Siguiente') }}</button>
+                        </div>
                     </form>
                 </div>
             </div>

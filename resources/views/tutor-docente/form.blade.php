@@ -23,7 +23,4 @@
         </div>
 
     </div>
-    <div class="box-footer mt-4 d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary" style=width:200px>{{ __('Siguiente') }}</button>
-    </div>
 </div>

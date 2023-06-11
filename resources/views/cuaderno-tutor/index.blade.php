@@ -28,7 +28,7 @@ Cuaderno Tutor
         <div>
             <h2 class="text-center">Cuadernos de tutor</h1>
         </div>
-        <a href="{{ route('empresa.create') }}"
+        <a href="{{ route('cuaderno-tutor.create') }}"
             class="btn btn-success d-flex justify-content-center align-items-center gap-1" data-placement="center"
             style=width:200px>
             {{ __('Crear cuaderno tutor') }}
