@@ -22,9 +22,17 @@ class AlumnoController extends Controller
         $alumno = Alumno::paginate();
 
         return view('alumno.index', compact('alumno'))
-            ->with('i', (request()->input('page', 1) - 1) * $alumno->perPage());
+        ->with('i', (request()->input('page', 1) - 1) * $alumno->perPage());
+
     }
 
+    public function defaultAlumnoIndex()
+    {
+        $alumno = Alumno::paginate();
+
+        return view('alumno.defaultAlumnoIndex', compact('alumno'))
+            ->with('i', (request()->input('page', 1) - 1) * $alumno->perPage());
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,6 +43,12 @@ class AlumnoController extends Controller
         $alumno = new Alumno();
         return view('alumno.create', compact('alumno'));
     }
+    public function cuadernoAlumnoCreate()
+    {
+        $alumno = new Alumno();
+        return view('alumno.cuadernoAlumnoCreate', compact('alumno'));
+    }
+    
 
     /**
      * Store a newly created resource in storage.
