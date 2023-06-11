@@ -32,8 +32,6 @@
                 {{ Form::file('plan_formativo', ['class' => 'form-control' . ($errors->has('plan_formativo') ? ' is-invalid' : '')]) }}
                 {!! $errors->first('plan_formativo', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-            <a href="{{ route('cuaderno-tutor.download', $cuadernoTutor->Id_cuaderno) }}">Descargar archivo de plan
-                formativo</a>
         </div>
     </div>
 </div>
