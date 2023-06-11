@@ -28,6 +28,22 @@
                     <div class="detail-panel">
                         <div class="d-flex gap-4">
                             <div class="d-flex flex-column my-2">
+                                <span class="detail-label">Cif Empresa</span>
+                                <span class="custom-input">
+                                    <span class="detail-primary">
+                                        {{ $cuadernoTutor->CIF_EMPRESA }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="d-flex flex-column my-2">
+                                <span class="detail-label">Dni Tutor Docente</span>
+                                <span class="custom-input">
+                                    <span class="detail-primary">
+                                        {{ $cuadernoTutor->DNI_tutor_docente }}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="d-flex flex-column my-2">
                                 <span class="detail-label">Trimestre</span>
                                 <span class="custom-input">
                                     <span class="detail-primary">
@@ -50,25 +66,11 @@
                                         {{ $cuadernoTutor->plan_formativo }}
                                     </span>
                                 </span>
+                                <a href="{{ route('cuaderno-tutor.download', $cuadernoTutor->Id_cuaderno) }}">Descargar
+                                    archivo de plan
+                                    formativo</a>
                             </div>
-                        </div>
-                        <div class="d-flex gap-4">
-                            <div class="d-flex flex-column my-2">
-                                <span class="detail-label">Cif Empresa</span>
-                                <span class="custom-input">
-                                    <span class="detail-primary">
-                                        {{ $cuadernoTutor->CIF_EMPRESA }}
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="d-flex flex-column my-2">
-                                <span class="detail-label">Dni Tutor Docente</span>
-                                <span class="custom-input">
-                                    <span class="detail-primary">
-                                        {{ $cuadernoTutor->DNI_tutor_docente }}
-                                    </span>
-                                </span>
-                            </div>
+
                         </div>
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item border rounded border-0 mb-4">
