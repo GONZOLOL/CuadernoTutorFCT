@@ -14,14 +14,57 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <div class="mb-1 d-flex justify-content-between align-items-center">
+                    <div class="mb-1 d-flex align-items-center">
                         <span class="fs-5 fw-bold">DATOS CUADERNO TUTOR</span>
+
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <div class="container-fluid">
+                                <!-- Botón para colapsar el navbar en dispositivos móviles -->
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+
+                                <!-- Contenido del navbar -->
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white"
+                                                href="{{ route('cuestionario-empresa.index') }}">Cuestionario
+                                                Empresa</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white"
+                                                href="{{ route('evaluacion-quincenal.index') }}">Evaluación
+                                                quincenal</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white"
+                                                href="{{ route('valoracion-alumno.index') }}">Valoración alumno</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white"
+                                                href="{{ route('valoracion-final-tutor-docente.index') }}">Valoración
+                                                final tutor docente</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-white"
+                                                href="{{ route('valoracion-final-tutor-laboral.index') }}">Valoración
+                                                final tutor laboral</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
                         <a href="{{ route('cuaderno-tutor.index') }}"
-                            class="btn btn-danger d-flex justify-content-center align-items-center gap-1"
+                            class="btn btn-danger d-flex justify-content-center align-items-center gap-1 ms-auto"
                             data-placement="center" style=width:180px>
                             {{ __('Volver') }}
                         </a>
                     </div>
+
                 </div>
 
                 <div class="card-body">

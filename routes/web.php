@@ -10,6 +10,13 @@ use App\Http\Controllers\TutorDocenteController;
 use App\Http\Controllers\CentroTrabajoController;
 use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\TutorLaboralController;
+use App\Http\Controllers\CuestionarioEmpresaController;
+use App\Http\Controllers\EvaluacionQuincenalController;
+use App\Http\Controllers\ValoracionAlumnoController;
+use App\Http\Controllers\ValoracionFinalTutorDocenteController;
+use App\Http\Controllers\ValoracionFinalTutorLaboralController;
+
+
 Route::get('/', function () {
     return view('/default');
 });
@@ -52,5 +59,14 @@ Route::get('cuaderno-tutor/{cuaderno_tutor_id}/alumno/create', 'VisitaController
 
 Route::resource('tutor-laboral', TutorLaboralController::class);
 
+Route::resource('cuestionario-empresa', CuestionarioEmpresaController::class);
+
+Route::resource('evaluacion-quincenal', EvaluacionQuincenalController::class);
+
+Route::resource('valoracion-alumno', ValoracionAlumnoController::class);
+
+Route::resource('valoracion-final-tutor-docente', ValoracionFinalTutorDocenteController::class);
+
+Route::resource('valoracion-final-tutor-laboral', ValoracionFinalTutorLaboralController::class);
 
 Auth::routes();
