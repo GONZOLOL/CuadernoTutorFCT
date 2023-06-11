@@ -24,6 +24,13 @@ class EmpresaController extends Controller
         return view('empresa.index', compact('empresa'));
     }
 
+    public function defaultIndex()
+    {
+        $empresa = Empresa::with('centroTrabajo')->get();
+
+        return view('empresa.defaultIndex', compact('empresa'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
