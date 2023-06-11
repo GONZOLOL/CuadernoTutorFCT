@@ -34,6 +34,11 @@ class TutorDocenteController extends Controller
         $tutorDocente = new TutorDocente();
         return view('tutor-docente.create', compact('tutorDocente'));
     }
+    public function cuadernoDocenteCreate()
+    {
+        $tutorDocente = new TutorDocente();
+        return view('tutor-docente.cuadernoDocenteCreate', compact('tutorDocente'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -48,6 +53,16 @@ class TutorDocenteController extends Controller
         $tutorDocente = TutorDocente::create($request->all());
 
         return redirect()->route('alumno.index')
+            ->with('success', 'TutorDocente created successfully.');
+    }
+
+    public function customStore(Request $request)
+    {
+        request()->validate(TutorDocente::$rules);
+
+        $tutorDocente = TutorDocente::create($request->all());
+
+        return redirect()->route('cuaderno-tutor.create')
             ->with('success', 'TutorDocente created successfully.');
     }
 
