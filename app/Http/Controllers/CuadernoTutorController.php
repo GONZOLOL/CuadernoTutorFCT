@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CuadernoTutor;
+use Illuminate\Support\Facades\File;
+
 use Illuminate\Http\Request;
 use App\Models\Empresa;
+use App\Models\CuadernoTutor;
 use App\Models\TutorDocente;
 use App\Models\Alumno;
 use App\Models\Visita;
@@ -36,7 +38,14 @@ class CuadernoTutorController extends Controller
     {
         $cuadernoTutor = new CuadernoTutor();
         $alumnos = Alumno::all(); // Recupera todos los alumnos
-        return view('cuaderno-tutor.create', compact('cuadernoTutor', 'alumnos'));
+        $tutores_docentes = TutorDocente::all()->mapWithKeys(function ($tutor) {
+            return [$tutor->DNI => $tutor->Nombre . ' ' . $tutor->Apellido_1];
+        });
+        $empresas = Empresa::all()->mapWithKeys(function ($empresa) {
+            return [$empresa->CIF => $empresa->Nombre];
+        });        
+
+        return view('cuaderno-tutor.create', compact('cuadernoTutor', 'alumnos', 'tutores_docentes', 'empresas'));
     }
 
     /**
@@ -47,52 +56,49 @@ class CuadernoTutorController extends Controller
      */
     public function store(Request $request)
     {
-
-        $empresa = Empresa::firstOrNew(
-            ['CIF' => $request->input('CIF_EMPRESA')], 
-            ['CIF' => $request->input('CIF_EMPRESA')]
-        );
-        
-        // Now check if it's a new instance or existing instance.
-        if (!$empresa->exists) {
-            // It's a new instance. Redirect to the creation form.
-            return redirect()->route('empresa.create')->withInput();
-        }
-        
-        // Same for TutorDocente
-        $tutorDocente = TutorDocente::firstOrNew(
-            ['DNI' => $request->input('DNI_tutor_docente')], 
-            ['DNI' => $request->input('DNI_tutor_docente')]
-        );
-        
-        if (!$tutorDocente->exists) {
-            // It's a new instance. Redirect to the creation form.
-            return redirect()->route('tutor-docente.create')->withInput();
-        }
-
-        // If both exist, proceed to create the CuadernoTutor.
         request()->validate(CuadernoTutor::$rules);
+    
+        // Si el archivo existe.
+        if ($request->hasFile('plan_formativo')) {
+            // Recuperamos el archivo.
+            $file = $request->file('plan_formativo');
+    
+            // Leemos su contenido.
+            $content = File::get($file);
+    
+            // Guardamos el contenido en base64 en el request.
+            $request->merge([
+                'plan_formativo' => base64_encode($content),
+            ]);
+        }
+    
         $cuadernoTutor = CuadernoTutor::create($request->all());
-
+    
         $cuadernoTutor->alumnos()->sync($request->alumnos);
-
+        dd($cuadernoTutor->alumnos);
+            
         $request->session()->forget('alumnoIDs');
-
+    
         return redirect()->route('cuaderno-tutor.index')
             ->with('success', 'CuadernoTutor created successfully.');
     }
     
-
     /**
      * Display the specified resource.
      *
      * @param  int $Id_cuaderno
      * @return \Illuminate\Http\Response
      */
+ 
+
     public function show($Id_cuaderno)
     {
-        $cuadernoTutor = CuadernoTutor::find($Id_cuaderno);
-        $visita = Visita::where('ID_CUADERNO', $Id_cuaderno) -> get();
+        $cuadernoTutor = CuadernoTutor::with('alumnos')->find($Id_cuaderno);
+
+        if (!$cuadernoTutor) {
+            return redirect()->route('cuaderno-tutor.index')
+                ->with('error', 'CuadernoTutor not found.');
+        }
 
         return view('cuaderno-tutor.show', compact('cuadernoTutor'));
     }
@@ -106,8 +112,18 @@ class CuadernoTutorController extends Controller
     public function edit($Id_cuaderno)
     {
         $cuadernoTutor = CuadernoTutor::find($Id_cuaderno);
+        
+        $plan_formativo = $cuadernoTutor->plan_formativo;
 
-        return view('cuaderno-tutor.edit', compact('cuadernoTutor'));
+        $alumnos = Alumno::all(); // Recupera todos los alumnos
+        $tutores_docentes = TutorDocente::all()->mapWithKeys(function ($tutor) {
+            return [$tutor->DNI => $tutor->Nombre . ' ' . $tutor->Apellido_1];
+        });
+        $empresas = Empresa::all()->mapWithKeys(function ($empresa) {
+            return [$empresa->CIF => $empresa->Nombre];
+        });
+
+        return view('cuaderno-tutor.edit', compact('cuadernoTutor', 'alumnos', 'tutores_docentes', 'empresas'));
     }
 
     /**
@@ -138,5 +154,19 @@ class CuadernoTutorController extends Controller
 
         return redirect()->route('cuaderno-tutor.index')
             ->with('success', 'CuadernoTutor deleted successfully');
+    }
+
+    public function download($Id_cuaderno)
+    {
+        $cuadernoTutor = CuadernoTutor::findOrFail($Id_cuaderno);
+
+        // Decodifica el archivo
+        $decoded_content = base64_decode($cuadernoTutor->plan_formativo);
+
+        // Crea una respuesta de descarga
+        return response($decoded_content, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="PlanFormativo.pdf"',
+        ]);
     }
 }
