@@ -1,56 +1,53 @@
 # Proyecto CUADERNO TUTOR FCT
 
-Este proyecto es una aplicación web desarrollada utilizando [Vite](https://vitejs.dev/), un marco de desarrollo rápido para aplicaciones web basado en Vue.js, y [Bootstrap](https://getbootstrap.com/), un framework CSS popular.
+Este proyecto es una aplicación web desarrollada utilizando [Laravel](https://laravel.com/docs/4.2#install-laravel) y [Bootstrap](https://getbootstrap.com/), un framework CSS popular. Como gestor de BBDD usa [MySQL](https://www.mysql.com/)
 
 ## Requisitos previos
 
-Asegúrate de tener instalado [Node.js](https://nodejs.org/) en tu máquina antes de ejecutar este proyecto. Además, asegúrate de tener [XAMPP](https://www.apachefriends.org/index.html) instalado y en funcionamiento para ejecutar el servidor web local.
+1. [Node.js](https://nodejs.org/) Versión 9.5.1
+2. [XAMPP](https://www.apachefriends.org/index.html) Versión 8.2.4
+3. [Git](https://git-scm.com/downloads) Versión 2.41.0
+4. [Composer](https://getcomposer.org/download/) Versión 2.5.8
+5. [Laravel](https://laravel.com/docs/4.2#install-laravel) Versión 4.2
 
 ## Configuración
 
-1. Clona este repositorio en la carpeta `htdocs` de tu instalación de XAMPP. 
-2. Navega hasta la carpeta del proyecto.
-3. Ejecuta el siguiente comando para instalar las dependencias:
-
+1. Clona este repositorio en la carpeta **`htdocs` de tu instalación de XAMPP**.
+   ```shell
+   git clone https://github.com/GONZOLOL/CuadernoTutorFCT.git
+   ```
+3. Navega hasta la carpeta del proyecto.
+    ```shell
+   cd ./CuadernoTutorFCT/
+   ```
+5. Ejecuta el siguiente comando para **instalar las dependencias**:
 ```shell
 npm install
 ```
+## Añadir la Base de Datos a MySQL
+
+1. Entra en el navegador a http://localhost/phpmyadmin/
+2. Crea una nueva base de datos importando este archivo
+   [Enlace Descarga cuaderno-tutor.sql]()
+3. Ejecuta el siguiente comando para realizar la migraciones de la tabla users:
+   ```shell
+   php arsitan migrate
+   ```
+   
 
 Scripts disponibles
 ------------------
 
-En el directorio del proyecto, puedes ejecutar los siguientes comandos:
+En el directorio del proyecto, ejecuta los siguientes comandos:
+
+Asegúrate de tener XAMPP en funcionamiento, tanto **Apache** como **MySQL**.
+
+### `php artisan serve`
+
+Inicia el servidor de desarrollo de Laravel.y ejecuta este comando para iniciar el servidor en [http://localhost:8000](http://localhost:8000).
 
 ### `npm run dev`
 
 Ejecuta la aplicación en el modo de desarrollo. Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en vivo. La página se recargará automáticamente si realizas cambios en el código fuente.
 
-### `npm run build`
 
-Compila y construye la aplicación para producción en la carpeta `dist`. La aplicación está lista para ser implementada en un servidor web.
-
-### `php artisan serve`
-
-Inicia el servidor de desarrollo de Laravel. Asegúrate de tener XAMPP en funcionamiento y ejecuta este comando para iniciar el servidor en [http://localhost:8000](http://localhost:8000).
-
-Dependencias
-------------
-
-El proyecto utiliza las siguientes dependencias:
-
-Dependencias de desarrollo
-
-- `@popperjs/core`: Librería que proporciona utilidades para el posicionamiento de elementos emergentes.
-- `@vitejs/plugin-vue`: Plugin oficial de Vite para admitir la compilación de archivos Vue.
-- `axios`: Cliente HTTP basado en promesas para realizar solicitudes a servidores.
-- `bootstrap`: Framework CSS popular para el desarrollo de interfaces web.
-- `laravel-vite-plugin`: Plugin de Vite para Laravel que facilita la integración de Vite con aplicaciones Laravel.
-- `sass`: Preprocesador de CSS que agrega funcionalidades adicionales a los estilos.
-- `vite`: Herramienta de construcción rápida y optimizada para aplicaciones web.
-- `vue`: Biblioteca JavaScript para construir interfaces de usuario interactivas.
-
-Dependencias de producción
-
-- `bootstrap-icons`: Conjunto de iconos SVG de Bootstrap.
-- `composer`: Herramienta para la gestión de paquetes de PHP.
-- `curl`: Cliente HTTP basado en la línea de comandos.
