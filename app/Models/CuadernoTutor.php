@@ -14,6 +14,7 @@ use App\Models\Visita;
  * @property $plan_formativo
  * @property $CIF_EMPRESA
  * @property $DNI_tutor_docente
+ * @property $visitas_previstas
  * @property $created_at
  * @property $updated_at
  *
@@ -44,6 +45,7 @@ class CuadernoTutor extends Model
 		'DNI_tutor_docente' => 'required',
         'visitas_previstas' => 'required',
         'plan_formativo' => 'required|mimes:pdf|max:2000',
+        
     ];
 
     protected $perPage = 20;
