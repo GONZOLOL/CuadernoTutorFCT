@@ -23,7 +23,7 @@ use App\Models\Visita;
  * @property EvaluaciónQuincenal[] $evaluaciónQuincenals
  * @property Tiene[] $tienes
  * @property TutorDocente $tutorDocente
- * @property ValoracionAlumno[] $valoracionAlumnos
+ * @property ValoracionAlumno[] $valoracionAlumno
  * @property ValoracionFinalTutorDocente[] $valoracionFinalTutorDocente
  * @property ValoraciónFinalTutorLaboral[] $valoraciónFinalTutorLaboral
  * @property Visita[] $visita
@@ -132,7 +132,7 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function valoracionAlumnos()
+    public function valoracionAlumno()
     {   
         return $this->hasMany('App\Models\ValoracionAlumno', 'Id_cuaderno', 'Id_cuaderno');
     }

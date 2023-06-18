@@ -91,9 +91,9 @@ Cuaderno Tutor
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-12 col-md-8 my-2">
                                 <span class="detail-label mx-3">Plan formativo</span>
-                                <span class="detail-input">
+                                <span class="detail-input w-80">
                                     <span class="detail-value">
                                         {{ $cuadernoTutor->plan_formativo }}
                                     </span>
