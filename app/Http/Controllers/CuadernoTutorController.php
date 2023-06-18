@@ -10,6 +10,7 @@ use App\Models\CuadernoTutor;
 use App\Models\TutorDocente;
 use App\Models\Alumno;
 use App\Models\Visita;
+use App\Models\Tiene;
  
 
 /**
@@ -78,9 +79,7 @@ class CuadernoTutorController extends Controller
     
         $cuadernoTutor = CuadernoTutor::create($request->all());
     
-        $cuadernoTutor->alumnos()->sync($request->alumnos);
-        dd($cuadernoTutor->alumnos);
-            
+        $cuadernoTutor->alumnos()->sync($request->alumnos);            
         $request->session()->forget('alumnoIDs');
     
         return redirect()->route('cuaderno-tutor.index')
@@ -99,12 +98,14 @@ class CuadernoTutorController extends Controller
     {
         $cuadernoTutor = CuadernoTutor::with('alumnos')->find($Id_cuaderno);
 
+        $cuadernoTutorId = $Id_cuaderno;
+
         if (!$cuadernoTutor) {
             return redirect()->route('cuaderno-tutor.index')
                 ->with('error', 'CuadernoTutor not found.');
         }
 
-        return view('cuaderno-tutor.show', compact('cuadernoTutor'));
+        return view('cuaderno-tutor.show', compact('cuadernoTutor', 'cuadernoTutorId'));
     }
 
     /**
@@ -154,12 +155,16 @@ class CuadernoTutorController extends Controller
      */
     public function destroy($Id_cuaderno)
     {
-        $cuadernoTutor = CuadernoTutor::find($Id_cuaderno)->delete();
-
+        // Delete the associated records in the `tiene` table
+        Tiene::where('Id_cuaderno', $Id_cuaderno)->delete();
+    
+        // Delete the CuadernoTutor record
+        CuadernoTutor::find($Id_cuaderno)->delete();
+    
         return redirect()->route('cuaderno-tutor.index')
             ->with('success', 'CuadernoTutor deleted successfully');
     }
-
+    
     public function download($Id_cuaderno)
     {
         $cuadernoTutor = CuadernoTutor::findOrFail($Id_cuaderno);
