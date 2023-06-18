@@ -29,6 +29,10 @@ class CuadernoTutorController extends Controller
        return view('cuaderno-tutor.index', compact('cuadernoTutor'));
     }
 
+    public function pdf()
+    {
+        return view('cuaderno-tutor.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *
