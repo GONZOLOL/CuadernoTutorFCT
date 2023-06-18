@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ValoracionFinalTutorLaboral;
+use App\Models\Alumno;
+use App\Models\CuadernoTutor;
+use App\Models\Tiene;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
 /**
  * Class ValoracionFinalTutorLaboralController
  * @package App\Http\Controllers
@@ -22,11 +25,9 @@ class ValoracionFinalTutorLaboralController extends Controller
 
         $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::whereHas('cuadernoTutor', function ($query) use ($cuadernoTutorId) {
             $query->where('Id_cuaderno', $cuadernoTutorId);
-        })->get();
+        })->with('alumno')->get();
 
-        $valoracionFinalTutorLaboralCount = $valoracionFinalTutorLaboral->count();
-
-        return view('valoracion-final-tutor-laboral.index', compact('valoracionFinalTutorLaboral', 'valoracionFinalTutorLaboralCount', 'cuadernoTutorId'));
+        return view('valoracion-final-tutor-laboral.index', compact('valoracionFinalTutorLaboral', 'cuadernoTutorId'));
     }
 
     /**
@@ -38,8 +39,14 @@ class ValoracionFinalTutorLaboralController extends Controller
     {
         $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
+        // Obtener los IDs de los alumnos asociados al cuaderno tutor
+        $alumnosDNI = Tiene::where('Id_cuaderno', $cuadernoTutorId)->pluck('DNI_alumno');
+
+        // Obtener los alumnos correspondientes a los IDs obtenidos
+        $alumnos = Alumno::whereIn('DNI', $alumnosDNI)->pluck(DB::raw("CONCAT(Nombre, ' ', Apellidos)"), 'DNI')->toArray();
+
         $valoracionFinalTutorLaboral = new ValoracionFinalTutorLaboral();
-        return view('valoracion-final-tutor-laboral.create', compact('valoracionFinalTutorLaboral', 'cuadernoTutorId'));
+        return view('valoracion-final-tutor-laboral.create', compact('valoracionFinalTutorLaboral', 'cuadernoTutorId', 'alumnos'));
     }
 
     /**
@@ -57,7 +64,7 @@ class ValoracionFinalTutorLaboralController extends Controller
         $cuadernoTutorId = $valoracionFinalTutorLaboral->Id_cuaderno;
 
         return redirect()->route('valoracion-final-tutor-laboral.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
-            ->with('success', 'ValoracionFinalTutorLaboral created successfully.');
+            ->with('success', 'Valoracion final tutor laboral created successfully.');
     }
     /**
      * @param int $id

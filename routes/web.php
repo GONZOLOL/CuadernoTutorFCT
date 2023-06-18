@@ -51,13 +51,13 @@ Route::post('customStore', [TutorDocenteController::class, 'customStore'])->name
 
 Route::resource('cuaderno-tutor', CuadernoTutorController::class);
 
-Route::get('/cuaderno-tutor/download/{id}', [CuadernoTutorController::class, 'download'])->name('cuaderno-tutor.download');
+Route::get('{cuadernoTutor_Id}/cuaderno-tutor/download/', [CuadernoTutorController::class, 'download'])->name('cuaderno-tutor.download');
 
 Route::resource('visita', VisitaController::class);
 
-Route::get('cuaderno-tutor/{Id_cuaderno}/visita/create', [VisitaController::class, 'create'])->name('visita.create');
+Route::get('{cuadernoTutor_Id}/visita/index/', 'VisitaController@index');
 
-Route::get('cuaderno-tutor/{Id_cuaderno}/visita', [VisitaController::class, 'index'])->name('visita.index');
+Route::get('{cuadernoTutor_Id}/visita/create/', 'VisitaController@create');
 
 Route::get('cuaderno-tutor/{cuaderno_tutor_id}/alumno/create', 'VisitaController@create');
 

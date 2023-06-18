@@ -47,7 +47,7 @@ class Empresa extends Model
 
     
     static $rules = [
-		'CIF' => 'required',
+		'CIF' => 'required | max:10',
 		'Nombre' => 'required',
 		'Domicilio_social' => 'required',
 		'Poblacion' => 'required',

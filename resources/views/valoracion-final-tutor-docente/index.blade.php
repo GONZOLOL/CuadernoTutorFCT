@@ -21,32 +21,45 @@ Cuestionario Empresa
                             {{ __('Valoracion final tutor docente') }}
                         </span>
 
-                        @if ($valoracionFinalTutorDocenteCount == 0)
-                        <span>No existe ninguna valoracion final tutor docente</span>
                         <div class="float-right">
                             <a href="{{ route('valoracion-final-tutor-docente.create', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}"
                                 class="btn btn-primary btn-sm float-right" data-placement="left">
                                 {{ __('Añadir valoracion final tutor docente') }}
                             </a>
                         </div>
-                        @endif
                     </div>
                 </div>
 
                 <div class="card-body">
+                    @foreach ($valoracionFinalTutorDocente as $valoracionFinalTutorDocente)
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="d-flex gap-3 border border-black p-2 px-3 bg-primary rounded text-white">
+                            <span>Alumno:</span>
+                            <span>
+                                {{ $valoracionFinalTutorDocente->alumno->Nombre }}
+                                {{ $valoracionFinalTutorDocente->alumno->Apellidos }}
+                            </span>
+                        </div>
+                        <div class="ms-auto">
+                            <form
+                                action="{{ route('valoracion-final-tutor-docente.destroy',$valoracionFinalTutorDocente->ID) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-md"><i class="fa fa-fw fa-trash"></i>
+                                    {{ __('Delete') }}</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            @if ($valoracionFinalTutorDocenteCount > 0)
-
                             <thead class="thead text-center">
                                 <tr>
                                     <th></th>
                                     <th colspan="5">Centro de trabajo:</th>
                                 </tr>
                             </thead>
-                            @endif
                             <tbody>
-                                @foreach ($valoracionFinalTutorDocente as $valoracionFinalTutorDocente)
 
                                 <tr class="text-center">
                                     <td></td>
@@ -294,16 +307,8 @@ Cuestionario Empresa
                                 @endif
                             </div>
                         </div>
-                        <form
-                            action="{{ route('valoracion-final-tutor-docente.destroy',$valoracionFinalTutorDocente->ID) }}"
-                            method="POST" class="d-flex justify-content-center my-3 mx-4">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-lg"><i class="fa fa-fw fa-trash"></i>
-                                {{ __('Delete') }}</button>
-                        </form>
-                        @endforeach
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -2,6 +2,12 @@
     <div class="box-body">
         <input type="hidden" name="Id_cuaderno" value="{{ $cuadernoTutorId }}">
 
+        <div class="form-group">
+            {{ Form::label('Alumno') }}
+            {{ Form::select('dni_alumno', $alumnos, $cuestionarioEmpresa->dni_alumno, ['class' => 'form-control w-25' . ($errors->has('dni_alumno') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un alumno']) }}
+            {!! $errors->first('dni_alumno', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="thead text-center">
@@ -404,7 +410,7 @@
                 </tbody>
             </table>
             <div class="box-footer mt20 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
             </div>
         </div>
     </div>

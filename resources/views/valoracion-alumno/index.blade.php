@@ -21,33 +21,43 @@ Cuestionario Empresa
                             {{ __('Valoracion Alumno') }}
                         </span>
 
-                        @if ($valoracionAlumnoCount == 0)
-                        <span>No existe ningún cuestionario de empresa</span>
                         <div class="float-right">
                             <a href="{{ route('valoracion-alumno.create', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}"
                                 class="btn btn-primary btn-sm float-right" data-placement="left">
                                 {{ __('Añadir valoracion alumno') }}
                             </a>
                         </div>
-                        @endif
                     </div>
                 </div>
 
                 <div class="card-body">
+                    @foreach ($valoracionAlumno as $valoracion)
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="d-flex gap-3 border border-black p-2 px-3 bg-primary rounded text-white">
+                            <span>Alumno:</span>
+                            <span>
+                                {{ $valoracion->alumno->Nombre }}
+                                {{ $valoracion->alumno->Apellidos }}
+                            </span>
+                        </div>
+                        <div class="ms-auto">
+                            <form action="{{ route('valoracion-alumno.destroy',$valoracion->ID) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-md"><i class="fa fa-fw fa-trash"></i>
+                                    {{ __('Delete') }}</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            @if ($valoracionAlumnoCount > 0)
-
                             <thead class="thead text-center">
                                 <tr>
                                     <th></th>
                                     <th colspan="5">Centro de trabajo:</th>
                                 </tr>
                             </thead>
-                            @endif
                             <tbody>
-                                @foreach ($valoracionAlumno as $valoracionAlumno)
-
                                 <tr class="text-center">
                                     <td></td>
                                     <td>5</td>
@@ -61,23 +71,23 @@ Cuestionario Empresa
                                     <td>Posibilidades formativas que ofrece la empresa</td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_1 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_1 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_1 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_1 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_1 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_1 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_1 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_1 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_1 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_1 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,23 +96,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_2 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_2 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_2 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_2 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_2 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_2 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_2 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_2 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_2 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_2 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -111,23 +121,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_3 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_3 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_3 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_3 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_3 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_3 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_3 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_3 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_3 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_3 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -136,23 +146,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_4 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_4 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_4 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_4 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_4 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_4 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_4 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_4 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_4 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_4 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -162,23 +172,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_5 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_5 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_5 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_5 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_5 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_5 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_5 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_5 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_5 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_5 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -188,23 +198,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_6 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_6 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_6 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_6 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_6 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_6 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_6 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_6 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_6 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_6 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -214,23 +224,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_7 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_7 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_7 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_7 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_7 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_7 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_7 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_7 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_7 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_7 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -240,23 +250,23 @@ Cuestionario Empresa
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_8 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_8 == 5 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_8 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_8 == 4 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_8 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_8 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_8 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_8 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                     <td class="text-center">
                                         <i
-                                            class="{{ $valoracionAlumno->opcion_8 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                            class="{{ $valoracion->opcion_8 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
                                 <tr>
@@ -264,8 +274,8 @@ Cuestionario Empresa
                                         Aspectos a mejorar de la fase de formación en centros de trabajo:
                                     </td>
                                     <td colspan="6" class="text-center">
-                                        @if (!empty($valoracionAlumno->aspectos_mejorables))
-                                        {{ $valoracionAlumno->aspectos_mejorables }}
+                                        @if (!empty($valoracion->aspectos_mejorables))
+                                        {{ $valoracion->aspectos_mejorables }}
                                         @else
                                         No hay aspectos a mejorar registrados.
                                         @endif
@@ -276,24 +286,16 @@ Cuestionario Empresa
                                         Aspectos a destacar de la fase de formación en centros de trabajo:
                                     </td>
                                     <td colspan="6" class="text-center">
-                                        @if (!empty($valoracionAlumno->aspectos_destacables))
-                                        {{ $valoracionAlumno->aspectos_destacables }}
+                                        @if (!empty($valoracion->aspectos_destacables))
+                                        {{ $valoracion->aspectos_destacables }}
                                         @else
                                         No hay aspectos a destacar registrados.
                                         @endif
                                     </td>
                                 </tr>
-
+                                @endforeach
                             </tbody>
                         </table>
-                        <form action="{{ route('valoracion-alumno.destroy',$valoracionAlumno->ID) }}" method="POST"
-                            class="d-flex justify-content-center my-3 mx-4">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-lg"><i class="fa fa-fw fa-trash"></i>
-                                {{ __('Delete') }}</button>
-                        </form>
-                        @endforeach
                     </div>
                 </div>
             </div>
