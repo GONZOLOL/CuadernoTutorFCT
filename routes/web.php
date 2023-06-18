@@ -18,6 +18,10 @@ Route::get('/cuaderno-tutor', function () {
     return view('cuaderno-tutor.index');
 });
 
+Route::get('/cuaderno-tutor/pdf', function () {
+    return view('cuaderno-tutor.pdf');
+});
+
 Route::resource('alumno', AlumnoController::class);
 
 Route::get('defaultAlumnoIndex', [AlumnoController::class, 'defaultAlumnoIndex'])->name('alumno.defaultAlumnoIndex');
