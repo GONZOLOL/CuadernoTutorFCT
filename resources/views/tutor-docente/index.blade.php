@@ -53,8 +53,6 @@ Tutor Docente
                         <table class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
-                                    <th>No</th>
-
                                     <th>Dni</th>
                                     <th>Apellido 1</th>
                                     <th>Apellido 2</th>
@@ -72,10 +70,10 @@ Tutor Docente
                                     <td>{{ $tutorDocente->Nombre }}</td>
 
                                     <td>
-                                        <form action="{{ route('tutor-docente.destroy',$tutorDocente->tutor_docente) }}"
+                                        <form action="{{ route('tutor-docente.destroy',$tutorDocente->DNI) }}"
                                             method="POST">
                                             <a class="btn btn-sm btn-success"
-                                                href="{{ route('tutor-docente.edit',$tutorDocente->tutor_docente) }}"><i
+                                                href="{{ route('tutor-docente.edit',$tutorDocente->DNI) }}"><i
                                                     class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                             @csrf
                                             @method('DELETE')
@@ -90,7 +88,6 @@ Tutor Docente
                     </div>
                 </div>
             </div>
-            {!! $tutorDocente->links() !!}
         </div>
     </div>
 </div>

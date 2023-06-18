@@ -43,6 +43,13 @@ class EmpresaController extends Controller
         return view('empresa.create', compact('empresa'));
     }
 
+    public function empresaCuadernoCreate()
+    {
+        $empresa = new Empresa;
+
+        return view('empresa.empresaCuadernoCreate', compact('empresa'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,6 +64,16 @@ class EmpresaController extends Controller
         
         return redirect()->route('centro-trabajo.create', ['CIF_EMPRESA' => $empresa->CIF])
             ->with('success', 'Empresa creada exitosamente. Ahora puedes agregar el centro de trabajo.');
+    }
+
+    public function customEmpresaStore(Request $request)
+    {
+        request()->validate(Empresa::$rules);
+
+        $empresa = Empresa::create($request->all());
+        
+        return redirect()->route('cuaderno-tutor.create')
+            ->with('success', 'Empresa creada exitosamente.');
     }
     
 
