@@ -39,27 +39,24 @@
                             <ul class="navbar-nav justify-content-between gap-4">
                                 <li class="nav-item">
                                     <a class="nav-link fw-bolder bg-white rounded px-4"
-                                        href="{{ route('cuestionario-empresa.index') }}">
+                                        href="{{ route('cuestionario-empresa.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">
                                         Cuestionario Empresa
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bolder bg-white rounded px-4"
-                                        href="{{ route('evaluacion-quincenal.index') }}">Evaluación
-                                        quincenal</a>
+                                        href="{{ route('valoracion-alumno.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">Valoración
+                                        alumno</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link fw-bolder bg-white rounded px-4"
-                                        href="{{ route('valoracion-alumno.index') }}">Valoración alumno</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link fw-bolder bg-white rounded px-4"
-                                        href="{{ route('valoracion-final-tutor-docente.index') }}">Valoración
+                                        href="{{ route('valoracion-final-tutor-docente.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">Valoración
                                         final tutor docente</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bolder bg-white rounded px-4"
-                                        href="{{ route('valoracion-final-tutor-laboral.index') }}">Valoración
+                                        href="{{ route('valoracion-final-tutor-laboral.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">Valoración
                                         final tutor laboral</a>
                                 </li>
                             </ul>

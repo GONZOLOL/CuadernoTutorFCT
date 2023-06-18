@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $evaluacionQuincenal->name ?? "{{ __('Show') Evaluacion Quincenal" }}
+    {{ $tiene->name ?? "{{ __('Show') Tiene" }}
 @endsection
 
 @section('content')
@@ -11,22 +11,22 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Evaluacion Quincenal</span>
+                            <span class="card-title">{{ __('Show') }} Tiene</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('evaluacion-quincenal.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('tienes.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Id:</strong>
-                            {{ $evaluacionQuincenal->ID }}
+                            <strong>Dni Alumno:</strong>
+                            {{ $tiene->DNI_alumno }}
                         </div>
                         <div class="form-group">
                             <strong>Id Cuaderno:</strong>
-                            {{ $evaluacionQuincenal->Id_cuaderno }}
+                            {{ $tiene->Id_cuaderno }}
                         </div>
 
                     </div>

@@ -16,12 +16,17 @@ class ValoracionAlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $valoracionAlumno = ValoracionAlumno::paginate();
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
-        return view('valoracion-alumno.index', compact('valoracionAlumno'))
-            ->with('i', (request()->input('page', 1) - 1) * $valoracionAlumno->perPage());
+        $valoracionAlumno = ValoracionAlumno::whereHas('cuadernoTutor', function ($query) use ($cuadernoTutorId) {
+            $query->where('Id_cuaderno', $cuadernoTutorId);
+        })->get();
+        
+        $valoracionAlumnoCount = $valoracionAlumno->count();
+
+        return view('valoracion-alumno.index', compact('valoracionAlumno', 'valoracionAlumnoCount', 'cuadernoTutorId'));
     }
 
     /**
@@ -29,10 +34,12 @@ class ValoracionAlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
+
         $valoracionAlumno = new ValoracionAlumno();
-        return view('valoracion-alumno.create', compact('valoracionAlumno'));
+        return view('valoracion-alumno.create', compact('valoracionAlumno', 'cuadernoTutorId'));
     }
 
     /**
@@ -47,51 +54,10 @@ class ValoracionAlumnoController extends Controller
 
         $valoracionAlumno = ValoracionAlumno::create($request->all());
 
-        return redirect()->route('valoracion-alumno.index')
-            ->with('success', 'ValoracionAlumno created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $valoracionAlumno = ValoracionAlumno::find($id);
-
-        return view('valoracion-alumno.show', compact('valoracionAlumno'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $valoracionAlumno = ValoracionAlumno::find($id);
-
-        return view('valoracion-alumno.edit', compact('valoracionAlumno'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  ValoracionAlumno $valoracionAlumno
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ValoracionAlumno $valoracionAlumno)
-    {
-        request()->validate(ValoracionAlumno::$rules);
-
-        $valoracionAlumno->update($request->all());
-
-        return redirect()->route('valoracion-alumno.index')
-            ->with('success', 'ValoracionAlumno updated successfully');
+        $cuadernoTutorId = $valoracionAlumno->Id_cuaderno;
+        
+        return redirect()->route('valoracion-alumno.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
+            ->with('success', 'Valoracion Alumno created successfully.');
     }
 
     /**
@@ -101,9 +67,12 @@ class ValoracionAlumnoController extends Controller
      */
     public function destroy($id)
     {
+        $valoracionAlumno = ValoracionAlumno::find($id);
+        $cuadernoTutorId = $valoracionAlumno->Id_cuaderno;
+
         $valoracionAlumno = ValoracionAlumno::find($id)->delete();
 
-        return redirect()->route('valoracion-alumno.index')
+        return redirect()->route('valoracion-alumno.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
             ->with('success', 'ValoracionAlumno deleted successfully');
     }
 }

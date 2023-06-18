@@ -16,12 +16,17 @@ class ValoracionFinalTutorLaboralController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::paginate();
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
-        return view('valoracion-final-tutor-laboral.index', compact('valoracionFinalTutorLaboral'))
-            ->with('i', (request()->input('page', 1) - 1) * $valoracionFinalTutorLaboral->perPage());
+        $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::whereHas('cuadernoTutor', function ($query) use ($cuadernoTutorId) {
+            $query->where('Id_cuaderno', $cuadernoTutorId);
+        })->get();
+
+        $valoracionFinalTutorLaboralCount = $valoracionFinalTutorLaboral->count();
+
+        return view('valoracion-final-tutor-laboral.index', compact('valoracionFinalTutorLaboral', 'valoracionFinalTutorLaboralCount', 'cuadernoTutorId'));
     }
 
     /**
@@ -29,10 +34,12 @@ class ValoracionFinalTutorLaboralController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
+
         $valoracionFinalTutorLaboral = new ValoracionFinalTutorLaboral();
-        return view('valoracion-final-tutor-laboral.create', compact('valoracionFinalTutorLaboral'));
+        return view('valoracion-final-tutor-laboral.create', compact('valoracionFinalTutorLaboral', 'cuadernoTutorId'));
     }
 
     /**
@@ -47,53 +54,11 @@ class ValoracionFinalTutorLaboralController extends Controller
 
         $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::create($request->all());
 
-        return redirect()->route('valoracion-final-tutor-laboral.index')
+        $cuadernoTutorId = $valoracionFinalTutorLaboral->Id_cuaderno;
+
+        return redirect()->route('valoracion-final-tutor-laboral.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
             ->with('success', 'ValoracionFinalTutorLaboral created successfully.');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::find($id);
-
-        return view('valoracion-final-tutor-laboral.show', compact('valoracionFinalTutorLaboral'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::find($id);
-
-        return view('valoracion-final-tutor-laboral.edit', compact('valoracionFinalTutorLaboral'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  ValoracionFinalTutorLaboral $valoracionFinalTutorLaboral
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ValoracionFinalTutorLaboral $valoracionFinalTutorLaboral)
-    {
-        request()->validate(ValoracionFinalTutorLaboral::$rules);
-
-        $valoracionFinalTutorLaboral->update($request->all());
-
-        return redirect()->route('valoracion-final-tutor-laboral.index')
-            ->with('success', 'ValoracionFinalTutorLaboral updated successfully');
-    }
-
     /**
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
@@ -101,9 +66,12 @@ class ValoracionFinalTutorLaboralController extends Controller
      */
     public function destroy($id)
     {
+        $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::find($id);
+        $cuadernoTutorId = $valoracionFinalTutorLaboral->Id_cuaderno;
+
         $valoracionFinalTutorLaboral = ValoracionFinalTutorLaboral::find($id)->delete();
 
-        return redirect()->route('valoracion-final-tutor-laboral.index')
+        return redirect()->route('valoracion-final-tutor-laboral.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
             ->with('success', 'ValoracionFinalTutorLaboral deleted successfully');
     }
 }

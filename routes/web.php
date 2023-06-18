@@ -35,6 +35,10 @@ Route::resource('empresa', EmpresaController::class);
 
 Route::get('defaultIndex', [EmpresaController::class, 'defaultIndex'])->name('empresa.defaultIndex');
 
+Route::get('empresaCuadernoCreate', [EmpresaController::class, 'empresaCuadernoCreate'])->name('empresa.empresaCuadernoCreate');
+
+Route::post('customEmpresaStore', [EmpresaController::class, 'customEmpresaStore'])->name('empresa.customEmpresaStore');
+
 Route::resource('centro-trabajo', CentroTrabajoController::class);
 
 Route::get('{CIF_EMPRESA}/centro-trabajo/create/', [CentroTrabajoController::class, 'create'])->name('centro-trabajo.create');
@@ -61,12 +65,26 @@ Route::resource('tutor-laboral', TutorLaboralController::class);
 
 Route::resource('cuestionario-empresa', CuestionarioEmpresaController::class);
 
-Route::resource('evaluacion-quincenal', EvaluacionQuincenalController::class);
+Route::get('{cuadernoTutor_Id}/cuestionario-empresa/index/', 'CuestionarioEmpresaController@index');
+
+Route::get('{cuadernoTutor_Id}/cuestionario-empresa/create/', 'CuestionarioEmpresaController@create');
 
 Route::resource('valoracion-alumno', ValoracionAlumnoController::class);
 
+Route::get('{cuadernoTutor_Id}/valoracion-alumno/index/', 'ValoracionAlumnoController@index');
+
+Route::get('{cuadernoTutor_Id}/valoracion-alumno/create/', 'ValoracionAlumnoController@create');
+
 Route::resource('valoracion-final-tutor-docente', ValoracionFinalTutorDocenteController::class);
 
+Route::get('{cuadernoTutor_Id}/valoracion-final-tutor-docente/index/', 'ValoracionFinalTutorDocenteController@index');
+
+Route::get('{cuadernoTutor_Id}/valoracion-final-tutor-docente/create/', 'ValoracionFinalTutorDocenteController@create');
+
 Route::resource('valoracion-final-tutor-laboral', ValoracionFinalTutorLaboralController::class);
+
+Route::get('{cuadernoTutor_Id}/valoracion-final-tutor-laboral/index/', 'ValoracionFinalTutorLaboralController@index');
+
+Route::get('{cuadernoTutor_Id}/valoracion-final-tutor-laboral/create/', 'ValoracionFinalTutorLaboralController@create');
 
 Auth::routes();

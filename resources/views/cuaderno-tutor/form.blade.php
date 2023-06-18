@@ -10,7 +10,7 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('Empresa') }}
-                        {{ Form::select('CIF_EMPRESA', [route('empresa.create') => 'Crear empresa'] + $empresas->toArray(), $cuadernoTutor->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Añadir empresa', 'id' => 'empresaSelect']) }}
+                        {{ Form::select('CIF_EMPRESA', [route('empresa.empresaCuadernoCreate') => 'Crear empresa'] + $empresas->toArray(), $cuadernoTutor->CIF_EMPRESA, ['class' => 'form-control' . ($errors->has('CIF_EMPRESA') ? ' is-invalid' : ''), 'placeholder' => 'Añadir empresa', 'id' => 'empresaSelect']) }}
                         {!! $errors->first('CIF_EMPRESA', '<div class="invalid-feedback">:message</div>') !!}
                     </div>
                     <div class="form-group">

@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property $opcion_4
  * @property $opcion_5
  * @property $opcion_6
- * @property $opción_7
+ * @property $opcion_7
  * @property $opcion_5_detalle
  * @property $opcion_6_detalle
- * @property $opción_7_detalle
+ * @property $opcion_7_detalle
  * @property $area_trabajo
  * @property $sugerencias_programa_formativo
  * @property $evaluacion_final
@@ -37,7 +37,6 @@ class ValoracionFinalTutorLaboral extends Model
     protected $primaryKey = "ID";
   
     static $rules = [
-		'ID' => 'required',
 		'opcion_1' => 'required',
 		'opcion_2' => 'required',
 		'opcion_3' => 'required',
@@ -53,7 +52,7 @@ class ValoracionFinalTutorLaboral extends Model
      *
      * @var array
      */
-    protected $fillable = ['ID','opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opción_7','opcion_5_detalle','opcion_6_detalle','opción_7_detalle','area_trabajo','sugerencias_programa_formativo','evaluacion_final','Id_cuaderno'];
+    protected $fillable = ['ID','opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_5_detalle','opcion_6_detalle','opcion_7_detalle','area_trabajo','sugerencias_programa_formativo','evaluacion_final','Id_cuaderno'];
 
 
     /**

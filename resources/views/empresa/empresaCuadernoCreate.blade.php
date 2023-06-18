@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('template_title')
-{{ __('Create') }} Valoracion Alumno
+Crear Empresa
 @endsection
 
 @section('content')
-<section class="content container-fluid">
+<section class="content container">
     <div class="row">
         <div class="col-md-12">
 
@@ -13,14 +13,14 @@
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">{{ __('Create') }} Valoracion Alumno</span>
+                    <span class="card-title">Crear Empresa</span>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('valoracion-alumno.store') }}" role="form"
+                    <form method="POST" action="{{ route('empresa.customEmpresaStore') }}" role="form"
                         enctype="multipart/form-data">
                         @csrf
 
-                        @include('valoracion-alumno.form')
+                        @include('empresa.form')
 
                     </form>
                 </div>

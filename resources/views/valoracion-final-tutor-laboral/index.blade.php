@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('template_title')
-Valoracion Final Tutor Laboral
+Valoración final tutor laboral
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
@@ -13,94 +18,242 @@ Valoracion Final Tutor Laboral
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
                         <span id="card_title">
-                            {{ __('Valoracion Final Tutor Laboral') }}
+                            {{ __('Valoracion final tutor laboral') }}
                         </span>
 
+                        @if ($valoracionFinalTutorLaboralCount == 0)
+                        <span>No existe ningúna valoración final tutor laboral</span>
                         <div class="float-right">
-                            <a href="{{ route('valoracion-final-tutor-laboral.create') }}"
+                            <a href="{{ route('valoracion-final-tutor-laboral.create', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}"
                                 class="btn btn-primary btn-sm float-right" data-placement="left">
-                                {{ __('Create New') }}
+                                {{ __('Añadir valoracion final tutor laboral') }}
                             </a>
                         </div>
+                        @endif
                     </div>
                 </div>
-                @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-                @endif
 
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            <thead class="thead">
+                            @if ($valoracionFinalTutorLaboralCount > 0)
+
+                            <thead class="thead text-center">
                                 <tr>
-                                    <th>No</th>
-
-                                    <th>Id</th>
-                                    <th>Opcion 1</th>
-                                    <th>Opcion 2</th>
-                                    <th>Opcion 3</th>
-                                    <th>Opcion 4</th>
-                                    <th>Opcion 5</th>
-                                    <th>Opcion 6</th>
-                                    <th>Opción 7</th>
-                                    <th>Opcion 5 Detalle</th>
-                                    <th>Opcion 6 Detalle</th>
-                                    <th>Opción 7 Detalle</th>
-                                    <th>Area Trabajo</th>
-                                    <th>Sugerencias Programa Formativo</th>
-                                    <th>Evaluacion Final</th>
-                                    <th>Id Cuaderno</th>
-
                                     <th></th>
+                                    <th colspan="5">Centro de trabajo:</th>
                                 </tr>
                             </thead>
+                            @endif
                             <tbody>
                                 @foreach ($valoracionFinalTutorLaboral as $valoracionFinalTutorLaboral)
+
+                                <tr class="text-center">
+                                    <td></td>
+                                    <td>Negativa</td>
+                                    <td>Positiva</td>
+                                    <td>Excelente</td>
+                                </tr>
+
                                 <tr>
-                                    <td>{{ ++$i }}</td>
-
-                                    <td>{{ $valoracionFinalTutorLaboral->ID }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_1 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_2 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_3 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_4 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_5 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_6 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opción_7 }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_5_detalle }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opcion_6_detalle }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->opción_7_detalle }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->area_trabajo }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->sugerencias_programa_formativo }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->evaluacion_final }}</td>
-                                    <td>{{ $valoracionFinalTutorLaboral->Id_cuaderno }}</td>
-
-                                    <td>
-                                        <form
-                                            action="{{ route('valoracion-final-tutor-laboral.destroy',$valoracionFinalTutorLaboral->id) }}"
-                                            method="POST">
-                                            <a class="btn btn-sm btn-primary "
-                                                href="{{ route('valoracion-final-tutor-laboral.show',$valoracionFinalTutorLaboral->id) }}"><i
-                                                    class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                            <a class="btn btn-sm btn-success"
-                                                href="{{ route('valoracion-final-tutor-laboral.edit',$valoracionFinalTutorLaboral->id) }}"><i
-                                                    class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                                    class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                                        </form>
+                                    <td>Competencias profesionales.</td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_1 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_1 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_1 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
                                     </td>
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <td>
+                                        Competencias organizativas.
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_2 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_2 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_2 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Competencias relacionales.
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_3 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_3 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_3 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Capacidad de respuesta a las contingencias.
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_4 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_4 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_4 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otro aspecto 1.
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_5 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_5 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_5 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otro aspecto 2.
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_6 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_6 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_6 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Otro aspecto 3.</td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_7 == 3 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_7 == 2 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                    <td class="text-center">
+                                        <i
+                                            class="{{ $valoracionFinalTutorLaboral->opcion_7 == 1 ? 'bi bi-check-circle-fill' : 'bi bi-circle' }}"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otros aspectos detalle el otro aspecto 1:
+                                    </td>
+                                    <td colspan="6" class="text-center">
+                                        @if (!empty($valoracionFinalTutorLaboral->opcion_5_detalle))
+                                        {{ $valoracionFinalTutorLaboral->opcion_5_detalle }}
+                                        @else
+                                        No hay detalles
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otros aspectos detalle el otro aspecto 2:
+                                    </td>
+                                    <td colspan="6" class="text-center">
+                                        @if (!empty($valoracionFinalTutorLaboral->opcion_6_detalle))
+                                        {{ $valoracionFinalTutorLaboral->opcion_6_detalle }}
+                                        @else
+                                        No hay detalles
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Otros aspectos detalle el otro aspecto 3:
+                                    </td>
+                                    <td colspan="6" class="text-center">
+                                        @if (!empty($valoracionFinalTutorLaboral->opcion_7_detalle))
+                                        {{ $valoracionFinalTutorLaboral->opcion_7_detalle }}
+                                        @else
+                                        No hay detalles
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Áreas y puestos de trabajo donde ha desarrollado las actividades formativas:
+                                    </td>
+                                    <td colspan="6" class="text-center">
+                                        @if (!empty($valoracionFinalTutorLaboral->area_trabajo))
+                                        {{ $valoracionFinalTutorLaboral->area_trabajo }}
+                                        @else
+                                        No hay aspectos a mejorar
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Modificaciones a introducir en el programa formativo
+                                    </td>
+                                    <td colspan="6" class="text-center">
+                                        @if (!empty($valoracionFinalTutorLaboral->sugerencias_programa_formativo))
+                                        {{ $valoracionFinalTutorLaboral->sugerencias_programa_formativo }}
+                                        @else
+                                        No hay aspectos a destacar
+                                        @endif
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-end align-items-center mb-4 border border-black ps-4 py-4">
+                            <span class="me-auto fs-4">Evaluación global</span>
+                            <div class="d-flex me-2 align-items-center justify-content-center" style="width:350px">
+                                @if ($valoracionFinalTutorLaboral->evaluacion_final == 1)
+                                APTO
+                                @elseif ($valoracionFinalTutorLaboral->evaluacion_final == 2)
+                                NO APTO
+                                @endif
+                            </div>
+                        </div>
+                        <form
+                            action="{{ route('valoracion-final-tutor-laboral.destroy',$valoracionFinalTutorLaboral->ID) }}"
+                            method="POST" class="d-flex justify-content-center my-3 mx-4">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-lg"><i class="fa fa-fw fa-trash"></i>
+                                {{ __('Delete') }}</button>
+                        </form>
+                        @endforeach
                     </div>
                 </div>
             </div>
-            {!! $valoracionFinalTutorLaboral->links() !!}
         </div>
     </div>
 </div>

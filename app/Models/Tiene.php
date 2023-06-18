@@ -5,38 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class CuestionarioEmpresa
+ * Class Tiene
  *
- * @property $ID
- * @property $opcion_1
- * @property $opcion_2
- * @property $opcion_3
- * @property $opcion_4
- * @property $opcion_5
- * @property $opcion_6
- * @property $sugerencias
+ * @property $DNI_alumno
  * @property $Id_cuaderno
  * @property $created_at
  * @property $updated_at
  *
+ * @property Alumno $alumno
  * @property CuadernoTutor $cuadernoTutor
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class CuestionarioEmpresa extends Model
+class Tiene extends Model
 {
+    protected $table = 'tiene';
 
-  protected $table = 'cuestionario_empresa';
-
-  protected $primaryKey = "ID";
-    
     static $rules = [
-		'opcion_1' => 'required',
-		'opcion_2' => 'required',
-		'opcion_3' => 'required',
-		'opcion_4' => 'required',
-		'opcion_5' => 'required',
-		'opcion_6' => 'required',
+		'DNI_alumno' => 'required',
 		'Id_cuaderno' => 'required',
     ];
 
@@ -47,9 +33,17 @@ class CuestionarioEmpresa extends Model
      *
      * @var array
      */
-    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','sugerencias','Id_cuaderno'];
+    protected $fillable = ['DNI_alumno','Id_cuaderno'];
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alumno()
+    {
+        return $this->hasOne('App\Models\Alumno', 'DNI', 'DNI_alumno');
+    }
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

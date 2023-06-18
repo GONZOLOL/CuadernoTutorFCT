@@ -34,16 +34,15 @@ class ValoracionAlumno extends Model
   protected $primaryKey = "ID";
     
     static $rules = [
-		'ID' => 'required',
 		'opcion_1' => 'required',
 		'opcion_2' => 'required',
 		'opcion_3' => 'required',
 		'opcion_4' => 'required',
 		'opcion_5' => 'required',
 		'opcion_6' => 'required',
-		'opción_7' => 'required',
-		'opción_8' => 'required',
-		'Id_cuaderno' => 'required',
+		'opcion_7' => 'required',
+		'opcion_8' => 'required',
+		'Id_cuaderno' => 'required'
     ];
 
     protected $perPage = 20;
@@ -53,7 +52,7 @@ class ValoracionAlumno extends Model
      *
      * @var array
      */
-    protected $fillable = ['ID','opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opción_7','opción_8','aspectos_destacables','aspectos_mejorables','Id_cuaderno'];
+    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_8','aspectos_destacables','aspectos_mejorables','Id_cuaderno'];
 
 
     /**
