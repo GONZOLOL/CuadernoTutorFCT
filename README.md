@@ -30,7 +30,7 @@ Asegúrate de tener XAMPP en funcionamiento, tanto **Apache** como **MySQL**.
 
 1. Entra en el navegador a http://localhost/phpmyadmin/
 2. Crea una nueva base de datos importando este archivo
-   [Enlace Descarga cuaderno-tutor.sql]()
+   [Enlace Descarga cuaderno-tutor.sql](./database/cuaderno_tutor.sql)
 3. Ejecuta el siguiente comando para realizar la migraciones de la tabla users:
    ```shell
    php arsitan migrate
