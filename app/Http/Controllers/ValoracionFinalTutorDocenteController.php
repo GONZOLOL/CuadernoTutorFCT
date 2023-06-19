@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\ValoracionFinalTutorDocente;
+use App\Models\Alumno;
+use App\Models\CuadernoTutor;
+use App\Models\Tiene;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 /**
@@ -22,11 +26,9 @@ class ValoracionFinalTutorDocenteController extends Controller
 
         $valoracionFinalTutorDocente = ValoracionFinalTutorDocente::whereHas('cuadernoTutor', function ($query) use ($cuadernoTutorId) {
             $query->where('Id_cuaderno', $cuadernoTutorId);
-        })->get();
+        })->with('alumno')->get();
 
-        $valoracionFinalTutorDocenteCount = $valoracionFinalTutorDocente->count();
-
-        return view('valoracion-final-tutor-docente.index', compact('valoracionFinalTutorDocente', 'valoracionFinalTutorDocenteCount', 'cuadernoTutorId'));
+        return view('valoracion-final-tutor-docente.index', compact('valoracionFinalTutorDocente', 'cuadernoTutorId'));
     }
 
     /**
@@ -38,8 +40,15 @@ class ValoracionFinalTutorDocenteController extends Controller
     {
         $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
+        // Obtener los IDs de los alumnos asociados al cuaderno tutor
+        $alumnosDNI = Tiene::where('Id_cuaderno', $cuadernoTutorId)->pluck('DNI_alumno');
+
+        
+        // Obtener los alumnos correspondientes a los IDs obtenidos
+        $alumnos = Alumno::whereIn('DNI', $alumnosDNI)->pluck(DB::raw("CONCAT(Nombre, ' ', Apellidos)"), 'DNI')->toArray();
+        
         $valoracionFinalTutorDocente = new ValoracionFinalTutorDocente();
-        return view('valoracion-final-tutor-docente.create', compact('valoracionFinalTutorDocente', 'cuadernoTutorId'));
+        return view('valoracion-final-tutor-docente.create', compact('valoracionFinalTutorDocente', 'cuadernoTutorId', 'alumnos'));
     }
 
     /**

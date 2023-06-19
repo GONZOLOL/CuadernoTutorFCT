@@ -29,7 +29,7 @@ Tutor Laboral
     </div>
     <div class="accordion" id="accordionExample" style="max-width:1100px; margin-top: 40px;">
         @foreach ($tutorLaboral as $tutor)
-        <div class="accordion-item border rounded border-0 mb-4 position-relative">
+        <div class="accordion-item border rounded mb-2 position-relative">
             <h2 class="accordion-header">
                 <button class="accordion-button border" type="button" data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapse{{ $tutor->DNI }}" aria-expanded="true"

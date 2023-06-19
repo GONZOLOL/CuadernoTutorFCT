@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $sugerencias_programa_formativo
  * @property $evaluacion_final
  * @property $Id_cuaderno
+ * @property $dni_alumno
  * @property $created_at
  * @property $updated_at
  *
@@ -43,6 +44,7 @@ class ValoracionFinalTutorLaboral extends Model
 		'opcion_4' => 'required',
 		'evaluacion_final' => 'required',
 		'Id_cuaderno' => 'required',
+    'dni_alumno' => 'required',
     ];
 
     protected $perPage = 20;
@@ -52,7 +54,7 @@ class ValoracionFinalTutorLaboral extends Model
      *
      * @var array
      */
-    protected $fillable = ['ID','opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_5_detalle','opcion_6_detalle','opcion_7_detalle','area_trabajo','sugerencias_programa_formativo','evaluacion_final','Id_cuaderno'];
+    protected $fillable = ['ID','opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_5_detalle','opcion_6_detalle','opcion_7_detalle','area_trabajo','sugerencias_programa_formativo','evaluacion_final','Id_cuaderno','dni_alumno'];
 
 
     /**
@@ -63,5 +65,11 @@ class ValoracionFinalTutorLaboral extends Model
         return $this->hasOne('App\Models\CuadernoTutor', 'Id_cuaderno', 'Id_cuaderno');
     }
     
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alumno()
+    {
+        return $this->hasOne('App\Models\Alumno', 'DNI', 'dni_alumno');
+    }
 }

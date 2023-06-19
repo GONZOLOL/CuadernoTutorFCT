@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $opcion_6
  * @property $sugerencias
  * @property $Id_cuaderno
+ * @property $dni_alumno
  * @property $created_at
  * @property $updated_at
  *
@@ -38,6 +39,7 @@ class CuestionarioEmpresa extends Model
 		'opcion_5' => 'required',
 		'opcion_6' => 'required',
 		'Id_cuaderno' => 'required',
+    'dni_alumno' => 'required',
     ];
 
     protected $perPage = 20;
@@ -47,7 +49,7 @@ class CuestionarioEmpresa extends Model
      *
      * @var array
      */
-    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','sugerencias','Id_cuaderno'];
+    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','sugerencias','Id_cuaderno', 'dni_alumno'];
 
 
     /**
@@ -58,5 +60,11 @@ class CuestionarioEmpresa extends Model
         return $this->hasOne('App\Models\CuadernoTutor', 'Id_cuaderno', 'Id_cuaderno');
     }
     
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alumno()
+    {
+        return $this->hasOne('App\Models\Alumno', 'DNI', 'dni_alumno');
+    }
 }

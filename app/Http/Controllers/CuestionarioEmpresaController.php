@@ -2,7 +2,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\CuestionarioEmpresa;
+use App\Models\Alumno;
+use App\Models\CuadernoTutor;
+use App\Models\Tiene;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /** 
  * Class CuestionarioEmpresaController
@@ -22,11 +26,9 @@ class CuestionarioEmpresaController extends Controller
      
          $cuestionarioEmpresa = CuestionarioEmpresa::whereHas('cuadernoTutor', function ($query) use ($cuadernoTutorId) {
              $query->where('Id_cuaderno', $cuadernoTutorId);
-         })->get();
-     
-         $cuestionarioCount = $cuestionarioEmpresa->count();
-     
-         return view('cuestionario-empresa.index', compact('cuestionarioEmpresa', 'cuestionarioCount', 'cuadernoTutorId'));
+         })->with('alumno')->get();
+          
+         return view('cuestionario-empresa.index', compact('cuestionarioEmpresa', 'cuadernoTutorId'));
      }
      
 
@@ -39,8 +41,15 @@ class CuestionarioEmpresaController extends Controller
     public function create(Request $request)
     {
         $cuadernoTutorId = $request->query('cuadernoTutor_Id');
+
+        // Obtener los IDs de los alumnos asociados al cuaderno tutor
+        $alumnosDNI = Tiene::where('Id_cuaderno', $cuadernoTutorId)->pluck('DNI_alumno');
+        
+        // Obtener los alumnos correspondientes a los IDs obtenidos
+        $alumnos = Alumno::whereIn('DNI', $alumnosDNI)->pluck(DB::raw("CONCAT(Nombre, ' ', Apellidos)"), 'DNI')->toArray();
+
         $cuestionarioEmpresa = new CuestionarioEmpresa();
-        return view('cuestionario-empresa.create', compact('cuestionarioEmpresa', 'cuadernoTutorId'));
+        return view('cuestionario-empresa.create', compact('cuestionarioEmpresa', 'cuadernoTutorId', 'alumnos'));
     }
     
     /**

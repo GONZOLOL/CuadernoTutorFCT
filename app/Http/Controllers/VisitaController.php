@@ -17,11 +17,13 @@ class VisitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($Id_cuaderno)
+    public function index(Request $request)
     {
-        $visitas = Visita::where('Id_cuaderno', $Id_cuaderno)->get();
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
-        return view('visita.index', compact('visitas', 'Id_cuaderno'));
+        $visita = Visita::where('Id_cuaderno', $cuadernoTutorId)->get();
+
+        return view('visita.index', compact('visita', 'cuadernoTutorId'));
     }
 
     /**
@@ -32,10 +34,11 @@ class VisitaController extends Controller
     
      public function create(Request $request)
      {
-         $Id_cuaderno = $request->route('Id_cuaderno');
-         $visita = new Visita();
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
-         return view('visita.create', compact('visita', 'Id_cuaderno'));
+        $visita = new Visita();
+
+        return view('visita.create', compact('visita', 'cuadernoTutorId'));
      }
         
   
@@ -52,64 +55,11 @@ class VisitaController extends Controller
 
         $visita = Visita::create($request->all());
 
-        $Id_cuaderno = $request->input('Id_cuaderno');
-        $url = route('visita.index', ['Id_cuaderno' => $Id_cuaderno]);
-
-        return redirect($url)
+        $cuadernoTutorId = $visita->Id_cuaderno;
+        
+        return redirect()->route('visita.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
             ->with('success', 'Visita created successfully.');
     }
-
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $Id_visita
-     * @return \Illuminate\Http\Response
-     */
-    public function show($Id_visita)
-    {
-        $visita = Visita::find($Id_visita);
-
-        return view('visita.show', compact('visita'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $Id_visita
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($Id_visita)
-    {
-        $visita = Visita::find($Id_visita);
-
-        $Id_cuaderno = $visita->Id_cuaderno;
-
-        return view('visita.edit', compact('visita', 'Id_cuaderno'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Visita $visita
-     * @return \Illuminate\Http\Response
-     */
-
-    
-    public function update(Request $request, Visita $visita)
-    {
-        request()->validate(Visita::$rules);
-        
-        $visita->update($request->all());
-        
-        $Id_cuaderno = $request->input('Id_cuaderno');
-
-        return redirect()->route('visita.index', ['Id_cuaderno' => $Id_cuaderno])
-            ->with('success', 'Visita actualizada exitosamente');
-    }
-    
 
     /**
      * @param int $Id_visita
@@ -119,17 +69,11 @@ class VisitaController extends Controller
     public function destroy($Id_visita)
     {
         $visita = Visita::find($Id_visita);
-        
-        if (!$visita) {
-            return redirect()->route('visita.index')
-                ->with('error', 'Visita no encontrada');
-        }
-        
-        $Id_cuaderno = $visita->Id_cuaderno;
+        $cuadernoTutorId = $visita->Id_cuaderno;
         
         $visita->delete();
     
-        return redirect()->route('visita.index', ['Id_cuaderno' => $Id_cuaderno])
+        return redirect()->route('visita.index', ['cuadernoTutor_Id' => $cuadernoTutorId])
             ->with('success', 'Visita borrada exitosamente');
     }
     

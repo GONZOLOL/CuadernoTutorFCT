@@ -23,8 +23,7 @@ class TutorLaboralController extends Controller
     {
         $tutorLaboral = TutorLaboral::paginate();
 
-        return view('tutor-laboral.index', compact('tutorLaboral'))
-            ->with('i', (request()->input('page', 1) - 1) * $tutorLaboral->perPage());
+        return view('tutor-laboral.index', compact('tutorLaboral'));
     }
 
     /**
@@ -52,11 +51,7 @@ class TutorLaboralController extends Controller
         request()->validate(TutorLaboral::$rules);
 
         $tutorLaboral = TutorLaboral::create($request->all());
-        
-        if(!$tutorLaboral->exists) {
-            return redirect()->back()->withErrors('Error creating TutorLaboral');
-        }
-        
+       
         $tutorLaboral->supervisaAlumnos()->sync($request->alumnos);
         
         return redirect()->route('tutor-laboral.index')
@@ -84,7 +79,8 @@ class TutorLaboralController extends Controller
      */
     public function edit($DNI)
     {
-        $tutorLaboral = TutorLaboral::find($DNI);
+        $tutorLaboral = TutorLaboral::with('supervisaAlumnos')->find($DNI);
+
 
         $centrosTrabajo = CentroTrabajo::pluck('Denominacion', 'id'); // Obtener la lista de centros de trabajo
         
