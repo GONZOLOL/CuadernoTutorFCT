@@ -18,8 +18,10 @@
             @includeif('partials.errors')
 
             <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">Añadir datos tutor docente</span>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span>Crear tutor docente</span>
+                    <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                        onclick="window.history.back();">{{ __('Volver') }}</button>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tutor-docente.customStore') }}" role="form"

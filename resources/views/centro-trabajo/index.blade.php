@@ -45,7 +45,7 @@ Centro Trabajo
                 <div class="accordion-body border">
                     <div class="detail-panel">
                         <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Denominacion</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -53,7 +53,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Domicilio</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -61,9 +61,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Poblacion</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -71,7 +69,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Código postal</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -81,7 +79,7 @@ Centro Trabajo
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Provincia</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -89,7 +87,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Distancia</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -97,9 +95,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">Preferencias alumnado</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -107,7 +103,7 @@ Centro Trabajo
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-md-3">
                                 <span class="detail-label mx-3">CIF empresa</span>
                                 <span class="detail-input">
                                     <span class="detail-value">

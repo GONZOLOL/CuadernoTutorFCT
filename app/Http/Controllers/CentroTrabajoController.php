@@ -36,7 +36,18 @@ class CentroTrabajoController extends Controller
         $CIF_EMPRESA = $request->route('CIF_EMPRESA');
         $centroTrabajo = new CentroTrabajo();
 
-        return view('centro-trabajo.create', compact('centroTrabajo', 'CIF_EMPRESA'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+
+        return view('centro-trabajo.create', compact('centroTrabajo', 'CIF_EMPRESA', 'provincias'));
     }
 
     /**
@@ -79,7 +90,18 @@ class CentroTrabajoController extends Controller
     {
         $centroTrabajo = CentroTrabajo::find($id);
 
-        return view('centro-trabajo.edit', compact('centroTrabajo'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+
+        return view('centro-trabajo.edit', compact('centroTrabajo', 'provincias'));
     }
 
     /**

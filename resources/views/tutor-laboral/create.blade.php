@@ -16,8 +16,10 @@
             @includeif('partials.errors')
 
             <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">{{ __('Create') }} Tutor Laboral</span>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span>Crear tutor laboral</span>
+                    <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                        onclick="window.history.back();">{{ __('Volver') }}</button>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('tutor-laboral.store') }}" role="form"
@@ -26,8 +28,12 @@
 
                         @include('tutor-laboral.form')
 
-                        <div class="my-3">
-                            <h5>Selecciona los alumnos a los que supervisa:</h5>
+                        <div class="mt-5 mb-2">
+                            <div class="d-flex">
+                                <h5 class="me-2">Selecciona los alumnos a los que supervisa:</h5>
+                                <span class="text-danger">*</span>
+                            </div>
+
                             <div class="row">
                                 @foreach ($alumnos as $alumno)
                                 <div class="col-lg-3 my-2">
@@ -36,7 +42,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox"
                                                     value="{{ $alumno->DNI }}" id="alumno{{ $alumno->DNI }}"
-                                                    name="alumnos[]" required
+                                                    name="alumnos[]"
                                                     onchange="toggleCardSelected('card{{ $alumno->DNI }}')">
                                                 <label class="form-check-label" for="alumno{{ $alumno->DNI }}">
                                                     {{ $alumno->Nombre }} {{ $alumno->Apellidos }}
@@ -47,13 +53,20 @@
                                 </div>
                                 @endforeach
                             </div>
-                            <div class="invalid-feedback">
-                                Por favor selecciona al menos un alumno.
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="invalid-feedback">
+                                        Por favor selecciona al menos un alumno.
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary">{{ __('Crear tutor laboral') }}</button>
+                            <button type="submit" class="btn btn-success" style="width:200px">
+                                {{ __('Guardar') }}</button>
                         </div>
                     </form>
                     <script>

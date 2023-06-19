@@ -31,6 +31,8 @@ Route::get('defaultAlumnoIndex', [AlumnoController::class, 'defaultAlumnoIndex']
 
 Route::get('cuadernoAlumnoCreate', [AlumnoController::class, 'cuadernoAlumnoCreate'])->name('alumno.cuadernoAlumnoCreate');
 
+Route::post('customAlumnoStore', [AlumnoController::class, 'customAlumnoStore'])->name('alumno.customAlumnoStore');
+
 Route::resource('empresa', EmpresaController::class);
 
 Route::get('defaultIndex', [EmpresaController::class, 'defaultIndex'])->name('empresa.defaultIndex');

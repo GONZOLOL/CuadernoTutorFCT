@@ -22,8 +22,9 @@ Alumno
         <div>
             <h2 class="text-center">Alumnos</h1>
         </div>
-        <a href="{{ route('alumno.create') }}" class="btn btn-success d-flex justify-content-center align-items-center"
-            data-placement="center" style=width:180px>
+        <a href="{{ route('alumno.cuadernoAlumnoCreate') }}"
+            class="btn btn-success d-flex justify-content-center align-items-center" data-placement="center"
+            style=width:180px>
             {{ __('Añadir alumno') }}
             <i class="bi bi-plus"></i>
         </a>
@@ -46,7 +47,7 @@ Alumno
                 <div class="accordion-body border">
                     <div class="detail-panel">
                         <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Apellidos</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -54,7 +55,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Nombre</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -62,7 +63,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Dni</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -70,9 +71,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Domicilio</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -80,7 +79,9 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Población</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -88,7 +89,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Codigo postal</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -96,9 +97,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Provincia</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -106,7 +105,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Fecha nacimiento</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -114,7 +113,9 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Edad</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -122,9 +123,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Teléfono</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -132,7 +131,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Email</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -140,17 +139,24 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Género</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
+                                        @if($alumno->Género == 'm')
+                                        Masculino
+                                        @elseif($alumno->Género == 'f')
+                                        Femenino
+                                        @else
                                         {{ $alumno->Género }}
+                                        @endif
                                     </span>
                                 </span>
                             </div>
+
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Nombre padre</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -158,7 +164,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Observaciones</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -166,7 +172,7 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Tipo empresa fct</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -174,17 +180,21 @@ Alumno
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-4 my-2">
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Solicita beca</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
+                                        @if($alumno->Solicita_beca == 0)
+                                        No
+                                        @else
                                         {{ $alumno->Solicita_beca }}
+                                        @endif
                                     </span>
                                 </span>
                             </div>
-                            <div class="col-12 col-md-4 my-2">
+
+                            @if($alumno->Solicita_beca != 0)
+                            <div class="col-6 col-md-6 col-lg-3 my-2">
                                 <span class="detail-label mx-3">Cuenta bancaria</span>
                                 <span class="detail-input">
                                     <span class="detail-value">
@@ -192,6 +202,8 @@ Alumno
                                     </span>
                                 </span>
                             </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>

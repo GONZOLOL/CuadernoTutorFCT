@@ -12,8 +12,10 @@
             @includeif('partials.errors')
 
             <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">{{ __('Create') }} Alumno</span>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span>Crear alumno</span>
+                    <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                        onclick="window.history.back();">{{ __('Volver') }}</button>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('alumno.store') }}" role="form" enctype="multipart/form-data">
@@ -21,13 +23,9 @@
 
                         @include('alumno.form')
 
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-end">
                             <div class="box-footer mt-4 d-flex justify-content-end">
-                                <button type="button" class="btn btn-danger" style="width:200px"
-                                    onclick="window.history.back();">{{ __('Volver') }}</button>
-                            </div>
-                            <div class="box-footer mt-4 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary" style="width:200px"
+                                <button type="submit" class="btn btn-success" style="width:200px"
                                     onclick="window.history.back();">{{ __('Guardar') }}</button>
                             </div>
                         </div>

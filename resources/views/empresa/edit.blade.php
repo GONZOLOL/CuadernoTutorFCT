@@ -12,8 +12,10 @@
             @includeif('partials.errors')
 
             <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">{{ __('Update') }} Empresa</span>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span>Editar empresa</span>
+                    <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                        onclick="window.history.back();">{{ __('Volver') }}</button>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('empresa.update', $empresa->CIF) }}" role="form"
