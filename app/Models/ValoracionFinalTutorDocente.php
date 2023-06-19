@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $evaluación_final
  * @property $aspectos_mejorables
  * @property $Id_cuaderno
+ * @property $dni_alumno
  * @property $created_at
  * @property $updated_at
  *
@@ -45,6 +46,7 @@ class ValoracionFinalTutorDocente extends Model
 		'opcion_8' => 'required',
 		'evaluacion_final' => 'required',
 		'Id_cuaderno' => 'required',
+    'dni_alumno' => 'required',
     ];
 
     protected $perPage = 20;
@@ -54,7 +56,7 @@ class ValoracionFinalTutorDocente extends Model
      *
      * @var array
      */
-    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_8','aspectos_destacables','evaluacion_final','aspectos_mejorables','Id_cuaderno'];
+    protected $fillable = ['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5','opcion_6','opcion_7','opcion_8','aspectos_destacables','evaluacion_final','aspectos_mejorables','Id_cuaderno', 'dni_alumno'];
 
 
     /**
@@ -65,5 +67,11 @@ class ValoracionFinalTutorDocente extends Model
         return $this->hasOne('App\Models\CuadernoTutor', 'Id_cuaderno', 'Id_cuaderno');
     }
     
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function alumno()
+    {
+        return $this->hasOne('App\Models\Alumno', 'DNI', 'dni_alumno');
+    }
 }

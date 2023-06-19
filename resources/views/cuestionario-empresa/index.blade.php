@@ -16,28 +16,40 @@ Cuestionario Empresa
             <div class="card">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-
                         <span id="card_title">
                             {{ __('Cuestionario Empresa') }}
                         </span>
-
-                        @if ($cuestionarioCount == 0)
-                        <span>No existe ningún cuestionario de empresa</span>
                         <div class="float-right">
                             <a href="{{ route('cuestionario-empresa.create', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}"
-                                class="btn btn-primary btn-sm float-right" data-placement="left">
-                                {{ __('Crear cuestionario empresa') }}
+                                class="btn btn-primary btn-md float-right" data-placement="left">
+                                {{ __('Añadir cuestionario empresa') }}
                             </a>
                         </div>
-                        @endif
                     </div>
                 </div>
 
                 <div class="card-body">
+                    @foreach ($cuestionarioEmpresa as $cuestionarioEmpresa)
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="d-flex gap-3 border border-black p-2 px-3 bg-primary rounded text-white">
+                            <span>Alumno:</span>
+                            <span>
+                                {{ $cuestionarioEmpresa->alumno->Nombre }}
+                                {{ $cuestionarioEmpresa->alumno->Apellidos }}
+                            </span>
+                        </div>
+                        <div class="ms-auto">
+                            <form action="{{ route('cuestionario-empresa.destroy',$cuestionarioEmpresa->ID) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-md"><i class="fa fa-fw fa-trash"></i>
+                                    {{ __('Delete') }}</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
-                            @if ($cuestionarioCount > 0)
-
                             <thead class="thead text-center">
                                 <tr>
                                     <th></th>
@@ -49,10 +61,7 @@ Cuestionario Empresa
                                     <th colspan="2">Nada</th>
                                 </tr>
                             </thead>
-                            @endif
                             <tbody>
-                                @foreach ($cuestionarioEmpresa as $cuestionarioEmpresa)
-
                                 <tr class="text-center">
                                     <td></td>
                                     <td></td>
@@ -66,7 +75,6 @@ Cuestionario Empresa
                                     <td>2</td>
                                     <td>1</td>
                                 </tr>
-
                                 <tr>
                                     <td>1.</td>
                                     <td>¿Cómo valoran el grado de preparación de nuestro alumno?</td>
@@ -322,22 +330,18 @@ Cuestionario Empresa
                                 <tr>
                                     <td>7.</td>
                                     <td>Sugerencias</td>
-                                    <td colspan="9" class="text-center">{{ $cuestionarioEmpresa->sugerencias }}</td>
+                                    <td colspan="9" class="text-center">
+                                        @if ($cuestionarioEmpresa->sugerencias)
+                                        {{ $cuestionarioEmpresa->sugerencias }}
+                                        @else
+                                        No hay sugerencias disponibles.
+                                        @endif
+                                    </td>
                                 </tr>
-                                <td>
-                                    <form action="{{ route('cuestionario-empresa.destroy',$cuestionarioEmpresa->ID) }}"
-                                        method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                class="fa fa-fw fa-trash"></i>
-                                            {{ __('Delete') }}</button>
-                                    </form>
-                                </td>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

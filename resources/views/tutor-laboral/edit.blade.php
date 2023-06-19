@@ -7,12 +7,13 @@
 @section('content')
 <section class="content container">
     <div class="col-md-12">
-
         @includeif('partials.errors')
 
         <div class="card card-default">
-            <div class="card-header">
-                <span class="card-title">{{ __('Update') }} Tutor Laboral</span>
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <span>Editar tutor laboral</span>
+                <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                    onclick="window.history.back();">{{ __('Volver') }}</button>
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('tutor-laboral.update', $tutorLaboral->DNI) }}" role="form"
@@ -31,8 +32,9 @@
                                     <div class="card-body">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ $alumno->DNI }}"
-                                                id="alumno{{ $alumno->DNI }}" name="alumnos[]" required
-                                                onchange="toggleCardSelected('card{{ $alumno->DNI }}')">
+                                                id="alumno{{ $alumno->DNI }}" name="alumnos[]"
+                                                onchange="toggleCardSelected('card{{ $alumno->DNI }}')"
+                                                {{ in_array($alumno->DNI, $tutorLaboral->supervisaAlumnos->pluck('DNI')->toArray()) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="alumno{{ $alumno->DNI }}">
                                                 {{ $alumno->Nombre }} {{ $alumno->Apellidos }}
                                             </label>
@@ -48,7 +50,7 @@
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="submit" class="btn btn-primary">{{ __('Guardar tutor laboral') }}</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
                     </div>
                 </form>
                 <script>

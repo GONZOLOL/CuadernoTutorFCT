@@ -12,8 +12,10 @@
             @includeif('partials.errors')
 
             <div class="card card-default">
-                <div class="card-header">
-                    <span class="card-title">{{ __('Update') }} Alumno</span>
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <span>Editar alumno</span>
+                    <button type="button" class="btn btn-sm btn-danger" style="width:100px"
+                        onclick="window.history.back();">{{ __('Volver') }}</button>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('alumno.update', $alumno->DNI) }}" role="form"
@@ -22,6 +24,10 @@
                         @csrf
 
                         @include('alumno.form')
+
+                        <div class="box-footer my-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary" style=width:200px>{{ __('Guardar') }}</button>
+                        </div>
 
                     </form>
                 </div>

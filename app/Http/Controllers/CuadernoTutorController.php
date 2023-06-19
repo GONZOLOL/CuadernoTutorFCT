@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
@@ -11,7 +12,6 @@ use App\Models\TutorDocente;
 use App\Models\Alumno;
 use App\Models\Visita;
 use App\Models\Tiene;
- 
 
 /**
  * Class CuadernoTutorController
@@ -61,30 +61,31 @@ class CuadernoTutorController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(CuadernoTutor::$rules);
+        $request->validate(CuadernoTutor::$rules);
     
         // Si el archivo existe.
         if ($request->hasFile('plan_formativo')) {
             // Recuperamos el archivo.
             $file = $request->file('plan_formativo');
     
-            // Leemos su contenido.
-            $content = File::get($file);
+            // Guardamos el archivo en el sistema de archivos.
+            $filePath = $file->store('plan_formativo');
     
-            // Guardamos el contenido en base64 en el request.
+            // Guardamos la ruta del archivo en el campo correspondiente en la base de datos.
             $request->merge([
-                'plan_formativo' => base64_encode($content),
+                'plan_formativo' => $filePath,
             ]);
         }
     
         $cuadernoTutor = CuadernoTutor::create($request->all());
     
-        $cuadernoTutor->alumnos()->sync($request->alumnos);            
+        $cuadernoTutor->alumnos()->sync($request->alumnos);
         $request->session()->forget('alumnoIDs');
     
         return redirect()->route('cuaderno-tutor.index')
             ->with('success', 'CuadernoTutor created successfully.');
     }
+    
     
     /**
      * Display the specified resource.
@@ -165,17 +166,27 @@ class CuadernoTutorController extends Controller
             ->with('success', 'CuadernoTutor deleted successfully');
     }
     
-    public function download($Id_cuaderno)
+    public function download(Request $request)
     {
-        $cuadernoTutor = CuadernoTutor::findOrFail($Id_cuaderno);
+        $cuadernoTutorId = $request->query('cuadernoTutor_Id');
 
-        // Decodifica el archivo
-        $decoded_content = base64_decode($cuadernoTutor->plan_formativo);
-
-        // Crea una respuesta de descarga
-        return response($decoded_content, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="PlanFormativo.pdf"',
-        ]);
+        $cuadernoTutor = CuadernoTutor::findOrFail($cuadernoTutorId);
+    
+        $filePath = $cuadernoTutor->plan_formativo;
+    
+        // Verifica si el archivo existe
+        if (Storage::exists($filePath)) {
+            // Obtiene el contenido del archivo
+            $fileContent = Storage::get($filePath);
+    
+            // Crea una respuesta de descarga
+            return response($fileContent, 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="PlanFormativo.pdf"',
+            ]);
+        } else {
+            abort(404); // Archivo no encontrado
+        }
     }
+    
 }

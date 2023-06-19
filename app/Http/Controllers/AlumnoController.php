@@ -41,12 +41,32 @@ class AlumnoController extends Controller
     public function create()
     {
         $alumno = new Alumno();
-        return view('alumno.create', compact('alumno'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+        return view('alumno.create', compact('alumno', 'provincias'));
     }
     public function cuadernoAlumnoCreate()
     {
         $alumno = new Alumno();
-        return view('alumno.cuadernoAlumnoCreate', compact('alumno'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+        return view('alumno.cuadernoAlumnoCreate', compact('alumno', 'provincias'));
     }
     
 
@@ -75,6 +95,25 @@ class AlumnoController extends Controller
             ->with('success', 'Alumno created successfully.');
     }
 
+    public function customAlumnoStore(Request $request)
+    {
+        request()->validate(Alumno::$rules);
+
+        $alumno = Alumno::create($request->all());
+
+        // get the previous stored alumnos or create a new array
+        $alumnos = $request->session()->get('alumnoIDs', []);
+
+        // add the new alumno DNI to the array
+        $alumnos[] = $alumno->DNI;
+
+        // store it back into the session
+        $request->session()->put('alumnoIDs', $alumnos);
+
+        return redirect()->route('alumno.index')
+            ->with('success', 'Alumno created successfully.');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -98,7 +137,18 @@ class AlumnoController extends Controller
     {
         $alumno = Alumno::find($DNI);
 
-        return view('alumno.edit', compact('alumno'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+
+        return view('alumno.edit', compact('alumno', 'provincias'));
     }
 
     /**

@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $Fecha
  * @property $Incidencia
  * @property $Observaciones
- * @property $Núm_visitas_previstas
  * @property $Id_cuaderno
+ * @property $num_visita
  * @property $created_at
  * @property $updated_at
  *
@@ -30,7 +30,7 @@ class Visita extends Model
     'Id_cuaderno'=> 'required',
 		'Fecha' => 'required',
 		'Incidencia' => 'required',
-		'Núm_visitas_previstas' => 'required',
+    'num_visita' => 'required',
     ];
 
     protected $perPage = 20;
@@ -40,7 +40,7 @@ class Visita extends Model
      *
      * @var array
      */
-    protected $fillable = ['Id_cuaderno', 'Fecha','Incidencia','Observaciones','Núm_visitas_previstas'];
+    protected $fillable = ['Id_cuaderno', 'num_visita', 'Fecha','Incidencia','Observaciones'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

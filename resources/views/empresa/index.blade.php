@@ -25,11 +25,11 @@ Empresa
 
     <div class="mb-1 d-flex justify-content-between">
         <div>
-            <h2 class="text-center">Empresas</h1>
+            <h2 class="text-center">Empresas</h2>
         </div>
         <a href="{{ route('empresa.create') }}"
             class="btn btn-success d-flex justify-content-center align-items-center gap-1" data-placement="center"
-            style=width:180px>
+            style="width:180px">
             {{ __('Añadir empresa') }}
             <i class="bi bi-plus-lg d-flex align-items-center"></i>
         </a>
@@ -37,8 +37,7 @@ Empresa
 
     <div class="accordion mt-5" id="accordionExample" style="max-width: 1100px">
         @foreach ($empresa as $empresa)
-
-        <div class="accordion-item border rounded border-0 mb-4 position-relative">
+        <div class="accordion-item border rounded mb-2 position-relative">
             <h2 class="accordion-header">
                 <button class="accordion-button border" type="button" data-bs-toggle="collapse"
                     data-bs-target="#panelsStayOpen-collapse{{ $empresa->CIF }}" aria-expanded="true"
@@ -220,39 +219,82 @@ Empresa
                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                                     data-bs-parent="#accordionChild">
                                     <div class="accordion-body border">
-                                        <div class="d-flex flex-column my-2">
-                                            <span class="detail-label">Denominacion</span>
-                                            <span class="custom-input">
-                                                <span class="detail-primary">
-                                                    {{ $centro->Denominacion }}
-                                                </span>
-                                            </span>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Denominacion</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Denominacion }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Domicilio</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Domicilio }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Poblacion</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Poblacion }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Codigó postal</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Codigo_postal }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="d-flex flex-column my-2">
-                                            <span class="detail-label">Domicilio</span>
-                                            <span class="custom-input">
-                                                <span class="detail-primary">
-                                                    {{ $centro->Domicilio }}
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div class="d-flex flex-column my-2">
-                                            <span class="detail-label">Poblacion</span>
-                                            <span class="custom-input">
-                                                <span class="detail-primary">
-                                                    {{ $centro->Poblacion }}
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div class="d-flex flex-column my-2">
-                                            <span class="detail-label">Codigó postal</span>
-                                            <span class="custom-input">
-                                                <span class="detail-primary">
-                                                    {{ $centro->Codigo_postal }}
-                                                </span>
-                                            </span>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Provincia</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Provincia }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Distancia</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Distancia }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column my-2">
+                                                    <span class="detail-label">Preferencia alumnado</span>
+                                                    <span class="custom-input">
+                                                        <span class="detail-primary">
+                                                            {{ $centro->Preferencias_alumnado }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -275,15 +317,8 @@ Empresa
                     <i class="bi bi-trash-fill"></i>
                 </button>
             </form>
-            @endforeach
         </div>
+        @endforeach
     </div>
-</div>
-<div class="d-flex justify-content-end pt-4">
-    <a href="{{ route('cuaderno-tutor.create') }}"
-        class="btn btn-primary d-flex justify-content-center align-items-center" data-placement="center"
-        style="width: 180px">
-        {{ __('Siguiente') }}
-    </a>
 </div>
 @endsection

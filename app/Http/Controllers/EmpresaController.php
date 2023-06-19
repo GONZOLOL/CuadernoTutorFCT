@@ -40,14 +40,36 @@ class EmpresaController extends Controller
     {
         $empresa = new Empresa;
 
-        return view('empresa.create', compact('empresa'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+
+        return view('empresa.create', compact('empresa', 'provincias'));
     }
 
     public function empresaCuadernoCreate()
     {
         $empresa = new Empresa;
+        
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
 
-        return view('empresa.empresaCuadernoCreate', compact('empresa'));
+        return view('empresa.empresaCuadernoCreate', compact('empresa','provincias'));
     }
 
     /**
@@ -101,7 +123,18 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::find($CIF);
 
-        return view('empresa.edit', compact('empresa'));
+        $provincias = [
+            'Almería' => 'Almería',
+            'Cádiz' => 'Cádiz',
+            'Córdoba' => 'Córdoba',
+            'Granada' => 'Granada',
+            'Huelva' => 'Huelva',
+            'Jaén' => 'Jaén',
+            'Málaga' => 'Málaga',
+            'Sevilla' => 'Sevilla',
+        ];
+
+        return view('empresa.edit', compact('empresa','provincias'));
     }
 
     /**

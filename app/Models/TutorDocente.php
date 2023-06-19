@@ -56,6 +56,4 @@ class TutorDocente extends Model
     {
         return $this->hasMany(CuadernoTutor::class);
     }
-    
-
 }
