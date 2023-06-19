@@ -4,11 +4,11 @@ Este proyecto es una aplicación web desarrollada utilizando [Laravel](https://l
 
 ## Requisitos previos
 
-1. [Node.js](https://nodejs.org/) Versión 9.5.1
+1. [Node.js](https://nodejs.org/) Versión 18.16
 2. [XAMPP](https://www.apachefriends.org/index.html) Versión 8.2.4
 3. [Git](https://git-scm.com/downloads) Versión 2.41.0
 4. [Composer](https://getcomposer.org/download/) Versión 2.5.8
-5. [Laravel](https://laravel.com/docs/4.2#install-laravel) Versión 4.2
+5. [Laravel]([https://laravel.com/docs/4.2#install-laravel](https://laravel.com/docs/10.x)) Versión 10.13.5
 
 ## Configuración
 
