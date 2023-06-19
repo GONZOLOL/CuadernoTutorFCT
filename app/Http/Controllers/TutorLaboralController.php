@@ -51,6 +51,8 @@ class TutorLaboralController extends Controller
         request()->validate(TutorLaboral::$rules);
 
         $tutorLaboral = TutorLaboral::create($request->all());
+
+        dd($tutorLaboral);
        
         $tutorLaboral->supervisaAlumnos()->sync($request->alumnos);
         

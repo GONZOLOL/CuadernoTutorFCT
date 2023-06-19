@@ -52,19 +52,19 @@
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold rounded px-4"
                                         href="{{ route('valoracion-alumno.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">
-                                        Valoración Alumno
+                                        valoracion Alumno
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold rounded px-4"
                                         href="{{ route('valoracion-final-tutor-docente.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">
-                                        Valoración Final Tutor Docente
+                                        valoracion Final Tutor Docente
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold rounded px-4"
                                         href="{{ route('valoracion-final-tutor-laboral.index', ['cuadernoTutor_Id' => $cuadernoTutorId]) }}">
-                                        Valoración Final Tutor Laboral
+                                        valoracion Final Tutor Laboral
                                     </a>
                                 </li>
                             </ul>

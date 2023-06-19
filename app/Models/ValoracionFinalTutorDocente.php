@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $opcion_4
  * @property $opcion_5
  * @property $opcion_6
- * @property $opción_7
- * @property $opción_8
+ * @property $opcion_7
+ * @property $opcion_8
  * @property $aspectos_destacables
  * @property $evaluación_final
  * @property $aspectos_mejorables

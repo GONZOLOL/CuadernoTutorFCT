@@ -117,8 +117,8 @@ CREATE TABLE VALORACION_FINAL_TUTOR_DOCENTE (
     opcion_4 INT NOT NULL,
     opcion_5 INT NOT NULL,
     opcion_6 INT NOT NULL,
-    opción_7 INT NOT NULL,
-    opción_8 INT NOT NULL,
+    opcion_7 INT NOT NULL,
+    opcion_8 INT NOT NULL,
     aspectos_destacables VARCHAR(100),
     evaluación_final BOOLEAN NOT NULL,
     aspectos_mejorables VARCHAR(100),
@@ -128,7 +128,7 @@ CREATE TABLE VALORACION_FINAL_TUTOR_DOCENTE (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE VALORACIÓN_FINAL_TUTOR_LABORAL (
+CREATE TABLE valoracion_FINAL_TUTOR_LABORAL (
     ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     opcion_1 INT NOT NULL,
     opcion_2 INT NOT NULL,
@@ -136,10 +136,10 @@ CREATE TABLE VALORACIÓN_FINAL_TUTOR_LABORAL (
     opcion_4 INT NOT NULL,
     opcion_5 INT,
     opcion_6 INT,
-    opción_7 INT,
+    opcion_7 INT,
     opcion_5_detalle VARCHAR(100),
     opcion_6_detalle VARCHAR(100),
-    opción_7_detalle VARCHAR(100),
+    opcion_7_detalle VARCHAR(100),
     area_trabajo VARCHAR(50),
     sugerencias_programa_formativo VARCHAR(100),
     evaluacion_final BOOLEAN NOT NULL,
@@ -157,8 +157,8 @@ CREATE TABLE VALORACION_ALUMNO (
     opcion_4 INT NOT NULL,
     opcion_5 INT NOT NULL,
     opcion_6 INT NOT NULL,
-    opción_7 INT NOT NULL,
-    opción_8 INT NOT NULL,
+    opcion_7 INT NOT NULL,
+    opcion_8 INT NOT NULL,
     aspectos_destacables VARCHAR(100),
     aspectos_mejorables VARCHAR(100),
     Id_cuaderno INT NOT NULL,

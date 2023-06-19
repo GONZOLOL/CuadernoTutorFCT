@@ -89,7 +89,9 @@ class CentroTrabajoController extends Controller
     public function edit($id)
     {
         $centroTrabajo = CentroTrabajo::find($id);
-
+    
+        $CIF_EMPRESA = $centroTrabajo->CIF_EMPRESA;
+    
         $provincias = [
             'Almería' => 'Almería',
             'Cádiz' => 'Cádiz',
@@ -100,10 +102,10 @@ class CentroTrabajoController extends Controller
             'Málaga' => 'Málaga',
             'Sevilla' => 'Sevilla',
         ];
-
-        return view('centro-trabajo.edit', compact('centroTrabajo', 'provincias'));
+    
+        return view('centro-trabajo.edit', compact('centroTrabajo', 'CIF_EMPRESA', 'provincias'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

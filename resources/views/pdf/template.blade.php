@@ -145,7 +145,7 @@ h1 {
 
 @foreach ($alumnos as $alumno)
 <h1>EVALUACIÓN FINAL</h1>
-<h1>VALORACIÓN DEL TUTOR LABORAL</h1>
+<h1>valoracion DEL TUTOR LABORAL</h1>
 <table>
   <!-- Tabla de Tutores Docentes -->
   <tr>
@@ -163,7 +163,7 @@ h1 {
     @endforeach
   </tr>
   <tr>
-    <th>Valoración de centros de trabajo</th>
+    <th>valoracion de centros de trabajo</th>
   </tr>
   <tr>
     <th></th>
@@ -231,7 +231,7 @@ h1 {
 <textarea name="aspectos_destacar" rows="5" cols="50"></textarea>
 
 
-<p>Finalizada la fase de formación y de acuerdo con la valoración emitida por el tutor/laboral se determina:</p>
+<p>Finalizada la fase de formación y de acuerdo con la valoracion emitida por el tutor/laboral se determina:</p>
 
 <p>En ________ a _____ de __________________ de___________</p>
 <p>El/LA TUTOR/A DEL CENTRO DE TRABAJO</p>
@@ -245,7 +245,7 @@ h1 {
 @endforeach
 @foreach ($alumnos as $alumno)
 
-<h1>VALORACIÓN DEL TUTOR DOCENTE</h1>
+<h1>valoracion DEL TUTOR DOCENTE</h1>
 <table>
   <!-- Tabla de Tutores Docentes -->
   <tr>
@@ -320,7 +320,7 @@ h1 {
     <td></td>
   </tr>
   <tr>
-    <th>Valoración general de las prácticas por el profesor/a responsable del seguimiento</th>
+    <th>valoracion general de las prácticas por el profesor/a responsable del seguimiento</th>
     <td></td>
     <td></td>
     <td></td>
@@ -333,7 +333,7 @@ h1 {
 
 <p>Aspectos a destacar de la fase de formación en centros de trabajo:</p>
 <textarea name="aspectos_destacar" rows="5" cols="50"></textarea>
-<p>Finalizada la fase de formación y de acuerdo con la valoración emitida por el tutor/laboral se determina:</p>
+<p>Finalizada la fase de formación y de acuerdo con la valoracion emitida por el tutor/laboral se determina:</p>
 
 <p>EVALUACIÓN FINAL:</p>
 <input type="radio" id="apto" name="evaluacion_final" value="apto">
