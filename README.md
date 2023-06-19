@@ -18,7 +18,7 @@ Este proyecto es una aplicación web desarrollada utilizando [Laravel](https://l
    ```
 3. Navega hasta la carpeta del proyecto.
     ```shell
-   cd ./CuadernoTutorFCT/
+   cd /CuadernoTutorFCT
    ```
 5. Ejecuta el siguiente comando para **instalar las dependencias**:
 ```shell
