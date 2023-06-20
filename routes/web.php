@@ -15,6 +15,8 @@ use App\Http\Controllers\EvaluacionQuincenalController;
 use App\Http\Controllers\ValoracionAlumnoController;
 use App\Http\Controllers\ValoracionFinalTutorDocenteController;
 use App\Http\Controllers\ValoracionFinalTutorLaboralController;
+use App\Http\Controllers\PDFController;
+
 
 
 Route::get('/', function () {
@@ -24,6 +26,9 @@ Route::get('/', function () {
 Route::get('/cuaderno-tutor', function () {
     return view('cuaderno-tutor.index');
 });
+
+Route::get('/generar-pdf/{idCuaderno}', [PDFController::class, 'generarPDF'])->name('generar-pdf');
+
 
 Route::resource('alumno', AlumnoController::class);
 

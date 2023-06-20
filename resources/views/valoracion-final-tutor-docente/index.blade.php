@@ -247,7 +247,7 @@ Cuestionario Empresa
                                 </tr>
                                 <tr>
                                     <td>
-                                        Valoración general de las prácticas por el profesor/a responsable del
+                                        valoracion general de las prácticas por el profesor/a responsable del
                                         seguimiento.
                                     </td>
                                     <td class="text-center">

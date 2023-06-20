@@ -49,14 +49,31 @@ class TutorLaboralController extends Controller
     public function store(Request $request)
     {
         request()->validate(TutorLaboral::$rules);
-
+    
+        $existingTutor = TutorLaboral::find($request->input('DNI'));
+    
+        if ($existingTutor) {
+            return redirect()->route('tutor-laboral.create')
+                ->with('error', 'A tutor with the same DNI already exists.');
+        }
+    
         $tutorLaboral = TutorLaboral::create($request->all());
-       
-        $tutorLaboral->supervisaAlumnos()->sync($request->alumnos);
-        
+    
+        if ($request->has('alumnos')) {
+            foreach ($request->alumnos as $alumno) {
+                $existingAlumno = Alumno::find($alumno);
+                if ($existingAlumno) {
+                    $tutorLaboral->supervisaAlumnos()->attach($alumno);
+                }
+            }
+        }
+    
         return redirect()->route('tutor-laboral.index')
             ->with('success', 'TutorLaboral created successfully.');
     }
+    
+
+    
 
     /**
      * Display the specified resource.
@@ -99,16 +116,26 @@ class TutorLaboralController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $DNI)
-    {
-        $tutorLaboral = TutorLaboral::findOrFail($DNI);
+{
+    $tutorLaboral = TutorLaboral::findOrFail($DNI);
 
-        request()->validate(TutorLaboral::$rules);
+    request()->validate(TutorLaboral::$rules);
 
-        $tutorLaboral->update($request->all());
+    $existingTutor = TutorLaboral::where('DNI', '!=', $DNI)
+        ->where('DNI', $request->input('DNI'))
+        ->first();
 
-        return redirect()->route('tutor-laboral.index')
-            ->with('success', 'TutorLaboral updated successfully');
+    if ($existingTutor) {
+        return redirect()->route('tutor-laboral.edit', $DNI)
+            ->with('error', 'A tutor with the same DNI already exists.');
     }
+
+    $tutorLaboral->update($request->all());
+
+    return redirect()->route('tutor-laboral.index')
+        ->with('success', 'TutorLaboral updated successfully');
+}
+
 
     /**
      * @param int $id

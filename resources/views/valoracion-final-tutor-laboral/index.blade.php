@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-Valoración final tutor laboral
+valoracion final tutor laboral
 @endsection
 
 @section('content')

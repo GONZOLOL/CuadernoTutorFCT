@@ -25,7 +25,7 @@ use App\Models\Visita;
  * @property TutorDocente $tutorDocente
  * @property ValoracionAlumno[] $valoracionAlumno
  * @property ValoracionFinalTutorDocente[] $valoracionFinalTutorDocente
- * @property ValoraciónFinalTutorLaboral[] $valoraciónFinalTutorLaboral
+ * @property valoracionFinalTutorLaboral[] $valoracionFinalTutorLaboral
  * @property Visita[] $visita
 
  * @package App
@@ -148,9 +148,9 @@ class CuadernoTutor extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function valoraciónFinaltutorLaboral()
+    public function valoracionFinaltutorLaboral()
     {
-        return $this->hasMany('App\Models\ValoraciónFinalTutorLaboral', 'Id_cuaderno', 'Id_cuaderno');
+        return $this->hasMany('App\Models\valoracionFinalTutorLaboral', 'Id_cuaderno', 'Id_cuaderno');
     }
     
     /**

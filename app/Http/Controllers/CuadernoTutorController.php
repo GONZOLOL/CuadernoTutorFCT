@@ -12,6 +12,12 @@ use App\Models\TutorDocente;
 use App\Models\Alumno;
 use App\Models\Visita;
 use App\Models\Tiene;
+use App\Models\ValoracionFinalTutorDocente;
+use App\Models\ValoracionFinalTutorLaboral;
+use App\Models\CuestionarioEmpresa;
+use App\Models\ValoracionAlumno;
+
+
 
 /**
  * Class CuadernoTutorController
@@ -30,6 +36,10 @@ class CuadernoTutorController extends Controller
        return view('cuaderno-tutor.index', compact('cuadernoTutor'));
     }
 
+    public function pdf()
+    {
+        return view('cuaderno-tutor.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -151,7 +161,20 @@ class CuadernoTutorController extends Controller
      * @throws \Exception
      */
     public function destroy($Id_cuaderno)
+    
     {
+        // Delete the associated records in the `cuestionario_empresa` table
+        ValoracionAlumno::where('Id_cuaderno', $Id_cuaderno)->delete();
+        // Delete the associated records in the `cuestionario_empresa` table
+        CuestionarioEmpresa::where('Id_cuaderno', $Id_cuaderno)->delete();
+    
+        // Delete the associated records in the `valoracion_final_tutor_docente` table
+        ValoracionFinalTutorDocente::where('Id_cuaderno', $Id_cuaderno)->delete();
+
+        // Delete the associated records in the `valoracion_final_tutor_laboral` table
+        ValoracionFinalTutorLaboral::where('Id_cuaderno', $Id_cuaderno)->delete();
+
+
         // Delete the associated records in the `tiene` table
         Tiene::where('Id_cuaderno', $Id_cuaderno)->delete();
     
