@@ -37,9 +37,9 @@
   }
 
   body {
-    margin-top: 90px;
+    margin-top: 40px;
     /* Ajusta el margen superior para que el contenido no se superponga al encabezado */
-    margin-bottom: 90px;
+    margin-bottom: 50px;
     /* Ajusta el margen inferior para que el contenido no se superponga al pie de página */
   }
   </style>
@@ -49,8 +49,6 @@
 
   <header>
     <div>
-      <img src="{{ asset('img/aenor.png') }}" alt="AENOR Logo">
-      <img src="{{ asset('img/logo.png') }}" alt="Logo">
       <p>Ciclo Formativo: D.A.W</p>
       <p>CURSO ACTUAL: {{ $cursoActual }}</p>
       <p>MD 75010603 REV 4 {{ \Carbon\Carbon::parse($fechaActualizacion)->format('d/m/y') }}</p>

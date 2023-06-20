@@ -12,11 +12,11 @@ class PDFController extends Controller
     {
         // Obtener datos de la base de datos
         $alumnos = DB::table('ALUMNO')
-        ->join('TIENE', 'ALUMNO.DNI', '=', 'TIENE.DNI_alumno')
-        ->join('CUADERNO_TUTOR', 'TIENE.Id_cuaderno', '=', 'CUADERNO_TUTOR.Id_cuaderno')
-        ->select('ALUMNO.*') // Selecciona todos los campos de la tabla ALUMNO
-        ->where('TIENE.Id_cuaderno', $idCuaderno)
-        ->get();
+            ->join('TIENE', 'ALUMNO.DNI', '=', 'TIENE.DNI_alumno')
+            ->join('CUADERNO_TUTOR', 'TIENE.Id_cuaderno', '=', 'CUADERNO_TUTOR.Id_cuaderno')
+            ->select('ALUMNO.*') // Selecciona todos los campos de la tabla ALUMNO
+            ->where('TIENE.Id_cuaderno', $idCuaderno)
+            ->get();
 
         $alumnoData = $alumnos;
 
@@ -27,10 +27,10 @@ class PDFController extends Controller
             ->get();
             
         $tutoresLaborales = DB::table('tutor_laboral')
-        ->join('empresa', 'tutor_laboral.CIF_EMPRESA', '=', 'empresa.CIF')
-        ->join('cuaderno_tutor', 'empresa.CIF', '=', 'cuaderno_tutor.CIF_EMPRESA')
-        ->where('cuaderno_tutor.Id_cuaderno', '=', $idCuaderno)
-        ->get();
+            ->join('empresa', 'tutor_laboral.CIF_EMPRESA', '=', 'empresa.CIF')
+            ->join('cuaderno_tutor', 'empresa.CIF', '=', 'cuaderno_tutor.CIF_EMPRESA')
+            ->where('cuaderno_tutor.Id_cuaderno', '=', $idCuaderno)
+            ->get();
         
 
         $cuaderno = DB::table('CUADERNO_TUTOR')
@@ -39,23 +39,42 @@ class PDFController extends Controller
         
         
         $empresa = DB::table('empresa')
-        ->where('CIF', $cuaderno->CIF_EMPRESA)
-        ->first();
+            ->where('CIF', $cuaderno->CIF_EMPRESA)
+            ->first();
         
         $centrosTrabajo = DB::table('CENTRO_TRABAJO')->get();
 
-            
+        $tutorDocenteValoracion = DB::table('VALORACION_FINAL_TUTOR_DOCENTE')
+            ->where('Id_cuaderno', $idCuaderno)
+            ->get();
+
+        $tutorLaboralValoracion = DB::table('VALORACION_FINAL_TUTOR_LABORAL')
+            ->where('Id_cuaderno', $idCuaderno)
+            ->get();
+        
+        $valoracionAlumno = DB::table('VALORACION_ALUMNO')
+            ->where('Id_cuaderno', $idCuaderno)
+            ->get();
+
+        $cuestionarioEmpresa = DB::table('VALORACION_ALUMNO')
+            ->where('Id_cuaderno', $idCuaderno)
+            ->get();
+
+        $visitas = DB::table('VISITA')
+        ->where('Id_cuaderno', $idCuaderno)
+        ->get();
+
         $cursoActual = null;
         $fechaActualizacion = null;
         $trimestre = null;
 
         
         if ($cuaderno) {
-            // Obtener los valores de cursoActual y fechaActualizacion
+
             $cursoActual = $cuaderno->ciclo_formativo_curso_actual;
             $fechaActualizacion = $cuaderno->updated_at;
             $trimestre = $cuaderno->trimestre;
-
+            $visitas_previstas = $cuaderno->visitas_previstas;
         }
     
         // Crear instancia de Dompdf
@@ -71,6 +90,13 @@ class PDFController extends Controller
             'trimestre' => $trimestre,
             'centrosTrabajo' => $centrosTrabajo,
             'empresa' => $empresa,
+            'cuaderno' => $cuaderno,
+            'tutorDocenteValoracion' => $tutorDocenteValoracion,
+            'tutorLaboralValoracion' => $tutorLaboralValoracion,
+            'cuestionarioEmpresa'=> $cuestionarioEmpresa,
+            'valoracionAlumno' => $valoracionAlumno,
+            'visitas' => $visitas,
+            'visitas_previstas' => $visitas_previstas,
 
         ];
         
