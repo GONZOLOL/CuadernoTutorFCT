@@ -40,16 +40,26 @@ Asegúrate de tener XAMPP en funcionamiento, tanto **Apache** como **MySQL**.
 Scripts disponibles
 ------------------
 
-En el directorio del proyecto, ejecuta los siguientes comandos:
+## Configuración y Ejecución
 
-Asegúrate de tener XAMPP en funcionamiento, tanto **Apache** como **MySQL**.
+Sigue estos pasos para configurar y ejecutar el proyecto:
 
-### `php artisan serve`
+1. Asegúrate de tener XAMPP instalado y funcionando con los servicios de **Apache** y **MySQL** activos.
 
-Inicia el servidor de desarrollo de Laravel.y ejecuta este comando para iniciar el servidor en [http://localhost:8000](http://localhost:8000).
+2. En el directorio raíz del proyecto, abre una terminal o línea de comandos y ejecuta el siguiente comando para iniciar el servidor de desarrollo de Laravel:
 
-### `npm run dev`
+   ```shell
+   php artisan serve
+   ````
+Esto iniciará el servidor en [http://127.0.0.1:8000].
 
-Ejecuta la aplicación en el modo de desarrollo. Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en vivo. La página se recargará automáticamente si realizas cambios en el código fuente.
+3. En otra terminal o línea de comandos, asegúrate de tener Node.js y npm instalados.
 
+4. Ejecuta el siguiente comando para compilar los assets de tu proyecto:
 
+```shell
+npm run dev
+```
+5. Esto compilará los archivos necesarios y los preparará para su uso en el navegador.
+
+6. Finalmente, abre tu navegador web y visita [http://127.0.0.1:8000] para ver la aplicación en vivo. La página se recargará automáticamente si realizas cambios en el código fuente.
